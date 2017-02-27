@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="dialog.js"></script>
+<script type="text/javascript">
+    document.write("<link href='../language/"+lang.bF+".css' type='text/css' rel='stylesheet'>");
+    document.write("<link href='../skin/"+config.Skin+"/dialog.css' type='text/css' rel='stylesheet'>");
+    var bm = lang["Camera"];
+    document.write("<title>" + bm + "</title>");
+    var imgW = 300, imgH = 227, canvas;
+    function aq() {
+        lang.ag(document);
+        parent.ar(bm);
+        photograph();
+        parent.document.getElementsByTagName('iframe')[0].style.height = '100%';
+    };
+    
+    function photograph(){
+        var camera = true;
+        var video = document.getElementById('video');
+        var errocb = function () {
+            camera = false;
+            $('camera_body').innerHTML = '<div class="nocamera">'+lang["No_camera"]+'</div>';
+        } 
+        if (navigator.getUserMedia) { // 标准的API  
+            navigator.getUserMedia({ "video": true }, function (stream) {
+                video.src = stream;  
+                video.play();  
+                draw(video);
+            }, errocb);  
+        } else if (navigator.webkitGetUserMedia) { // WebKit 核心的API  
+            navigator.webkitGetUserMedia({ "video": true }, function (stream) {
+                video.src = window.webkitURL.createObjectURL(stream);  
+                video.play();  
+                draw(video);
+            }, errocb);  
+        } else if(navigator.mozGetUserMedia) {
+            navigator.mozGetUserMedia({ "video": true }, function (stream) {
+                video.src = window.URL.createObjectURL(stream);
+                video.play();
+                draw(video);
+            }, errocb);
+        }else if (navigator.msGetUserMedia) {
+            navigator.msGetUserMedia({ "video": true }, function(stream) {
+                video.src = window.URL.createObjectURL(stream);
+                video.play();
+                draw(video);
+            }, errBack);
+        } else{
+            $('camera_body').innerHTML = '<div class="nocamera">您使用的浏览器不支持拍照功能，请使用chrome浏览器</div>';
+        }
+        
+        function draw(video){
+            canvas = document.getElementById("canvas");
+            var video = document.getElementById("video");  
+            context = canvas.getContext("2d");
+            context.fillStyle = "#ffffff";
+            context.fillRect(0, 0, imgW, imgH);
+            context.drawImage(video, 0, 0, imgW, imgH);
+            setInterval(function(){
+                context.drawImage(video, 0, 0, imgW, imgH);
+            }, 10);
+        }
+    };
+    
+    function ok(){
+        var tImg = new Image();
+		var src = canvas.toDataURL("image/png");
+		//window.open(imgCanvas.toDataURL("image/png"));
+		var base64 = src.replace(/^data:image\/(png|jpg);base64,/, ""); 
+		var BASEURL = parent.parent.BASEURL;
+		parent.parent.$.ajax({
+		    type: 'POST',
+		    url: BASEURL + '/experiment/experiment/ajaxBase64ToImage',
+		    data: {
+		        base64 : base64
+		    },
+		    success: function(data){
+		        if(data.status == 1){
+		            EWIN.insertHTML('<img src="'+data.info+'">');
+			        parent.bV();
+		        }else{
+		            alert(data.info);
+		        }
+		    }
+		});
+		/*
+		$.sendPost(BASEURL + '/experiment/experiment/ajaxBase64ToImage', {
+            base64 : base64
+        }, function(data){
+        	obj.jQimg.attr('src', data.info);
+        	obj.jQimg.attr('class', 'rotate_'+obj.repeat);
+        	obj.imgEditorMode.modal('hide');
+        });*/
+    }
+</script>
+<style>
+.camera_box, #camera_body, body{
+	width: 500px;
+	height: 285px;
+}
+.camera_box video{
+	 display: none;
+}
+.nocamera{
+    text-align: center;
+    line-height: 200px;
+    font-size: 18px;
+}
+.camera_box{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.dlgBtnCommon{
+	float: right;
+}
+.camera_box canvas{
+	margin-bottom: 8px; 
+}
+</style>
+</head>
+<body onload="aq()">
+	<div id="camera_body">
+		<div class="camera_box"><!-- 580    438 -->
+			<canvas id="canvas" width="300" height="227"></canvas>
+			<video id="video" width="300" height="227"></video>
+			<input type="submit" class="dlgBtnCommon dlgBtn" value="确定" id="d_ok" lang="DlgBtnOK" onclick="ok()" />
+		</div>
+	</div>
+</body>
+</html>

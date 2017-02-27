@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="dialog.js"></script>
+<script type="text/javascript">
+	var window_ = parent.parent.window;
+	var $ = window_.$;
+    document.write("<link href='../language/"+lang.bF+".css' type='text/css' rel='stylesheet'>");
+    document.write("<link href='../skin/"+config.Skin+"/dialog.css' type='text/css' rel='stylesheet'>");
+    var bm = lang["addSubModule"];
+    document.write("<title>" + bm + "</title>");
+    var content;
+    function aq() {
+        lang.ag(document);
+        parent.ar(bm);
+        parent.document.getElementsByTagName('iframe')[0].style.height = '100%';
+        insert_submodule();
+    };
+    var save_as_box, show_module_list;
+    
+    //存为子模板
+    function saveas_submodule(obj){
+        var html = parent.parent.addsubmodule.getHTML();
+        var obj = $('<div class="sub_template_outer_html">'+html+'</div>');
+        obj.find('.add_materiel_data').each(function(index, obj){
+            var text = obj.getAttribute('type');
+            $(this)[0].outerHTML = '<span class="add_materiel_btn">['+text.toUpperCase()+']</span>';
+        });
+        content = obj[0].outerHTML;
+        save_as_box = save_as_box ? save_as_box : document.getElementById('save_as_box');
+        show_module_list = show_module_list ? show_module_list : document.getElementById('show_module_list');
+        save_as_box.style.display = 'block';
+        show_module_list.style.display = 'none';
+        document.getElementById('saveas_submodule').style.display = 'none';
+    };
+    
+    function saveok(obj){
+        var obj = obj;
+        var name = document.getElementById('sub_module_name').value,
+    		dis = document.getElementById('sub_module_dis').value;
+        if(name.trim() == ''){
+            $.showAlert('模板名称不能为空');
+            return;
+        }
+        if(name.length > 64){
+    		$.showAlert('子模板名称最长64个字');
+    		return;
+    	}
+        if(dis.length > 255){
+            $.showAlert('模板描述最长255个字');
+    		return;
+        }
+        
+        if(obj.getAttribute('submit')){
+            return;
+        }
+        obj.setAttribute('submit', 'submit')
+	    var data = {
+	    	insertData: {
+	            'name': name,
+	            'content': content,
+	            'descript': dis,
+	        },
+	        tempReal: {
+	            'component_id': '2'
+	        }
+	    };
+	    $.ajax({
+	        type: 'POST',
+	        url: '?r=template/add-sub-temp',
+	        data: data,
+	        success: function(data){
+	            obj.setAttribute('submit', null)
+	            if(data.status == 1){
+	                $.showAlert('保存成功');
+	                parent.bV();
+	            }else{
+	            	$.showAlert(data.info);
+	            }
+	        }
+	    });
+    };
+    function savecancel(){
+        save_as_box = save_as_box ? save_as_box : document.getElementById('save_as_box');
+        show_module_list = show_module_list ? show_module_list : document.getElementById('show_module_list');
+        save_as_box.style.display = 'none';
+        show_module_list.style.display = 'block';
+        document.getElementById('saveas_submodule').style.display = 'block';
+    }
+    
+    var mudoleData = {};
+    function insert_submodule(){
+        save_as_box = save_as_box ? save_as_box : document.getElementById('save_as_box');
+        show_module_list = show_module_list ? show_module_list : document.getElementById('show_module_list');
+        
+        if(show_module_list.innerHTML != ''){
+            show_module_list.style.display = 'block';
+            save_as_box.style.display = 'none';
+            return;
+        }
+        $.ajax({
+	        type: 'POST',
+	        url: '?r=template/list-sub-temp',
+	        success: function(data){
+	            console.log(data);
+	            document.getElementById('load').remove();
+	            var html = '<ul class="fl">';//<span></span>';
+	            var len = data.data.length;
+	            var data = data.data;
+	            
+	            for(var i=0; i<len; i++){
+	                html += '<li onclick="insertModuleData('+data[i].id+')" onmouseover="showMudoleCon('+ data[i].id +')">' + data[i].name +'<div class="des">'+ data[i].descript +'</div></li>';
+	                mudoleData[data[i].id] = data[i].content;
+	            }
+	            html += '</ul><div id="show_mudole_con"></div>';
+	            show_module_list.innerHTML = html;
+	            show_module_list.style.display = 'block';
+	            save_as_box.style.display = 'none';
+	            document.getElementById('saveas_submodule').style.display = 'inline-block';
+	        }
+	    });
+    };
+    
+    function showMudoleCon(id){
+        document.getElementById('show_mudole_con').innerHTML = mudoleData[id]; 
+    };
+    
+    function insertModuleData(id){
+        parent.parent.window.expUpdate = true;
+        parent.parent.window.noLoadTip = false;
+        EWIN.insertHTML(mudoleData[id]);
+        parent.bV();
+    };
+    
+</script>
+<style>
+#save_as_box, #show_module_list{
+	display: none;
+}
+#sub_module_body, body{
+	width: 800px;
+	height: 400px;
+}
+#show_module_list{
+	overflow: hidden;
+    padding: 0px 24px;
+}
+li{
+    list-style: none;
+    padding: 5px 0px 5px 10px;
+    color: #333;
+}
+li:hover {
+    background-color: #eee;
+    cursor: pointer;
+}
+ul{
+    height: 300px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 20px 20px 10px 20px;
+    width: 180px;
+}
+.btn_box{
+	text-align: center;
+}
+.save_part{
+	padding: 5px 0px;
+}
+#save_as_box{
+    padding: 21px;
+	overflow: hidden;
+}
+.fl{
+	float: left;	
+}
+#show_mudole_con{
+    margin-left: 238px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+	height: 300px;
+	overflow-y: auto;
+}
+.textarea{
+    vertical-align: top;
+   	width: 200px;
+    height: 50px;
+}
+p{
+	margin: 0px;
+}
+.saveas_submodule{
+    margin-left: 44px;
+	display: none;
+}
+label{
+	vertical-align: top;
+	display: inline-block;
+	line-height: 30px;
+}
+input, textarea{
+    border: 1px solid #ccc;
+    height: 28px;
+    line-height: 28px;
+	width: 350px;
+	vertical-align: middle;
+}
+textarea{
+	height: 60px;
+	line-height: 18px;
+}
+.btn_box{
+	text-align: right;
+}
+.btn_box button, .saveas_submodule{
+    border-radius: 3px;
+	height: 28px;
+	width: 100px;
+	border: none;
+    cursor: pointer;
+}
+.submit_sub, .saveas_submodule{
+	background: #009dd9;
+    color: #fff;
+}
+.cancel_sub{
+	background: #eee;
+    color: #666;
+}
+#load{
+	text-align: center;
+	line-height: 374px;
+}
+</style>
+</head>
+<body onload="aq()">
+	<div id="sub_module_body">
+		<div id="load">加载中......</div>
+		<div class="btn_box">
+			<!--  <button class="insert_submodule">插入子模板</button> onclick="insert_submodule()"  -->
+			<!-- <button class="saveas_submodule" onclick="saveas_submodule()" >存为子模板</button> -->
+		</div>
+		<div id="save_as_box">
+			<div class="save_part">
+				<label>模板名称：</label>
+				<input type="text" id="sub_module_name" />
+			</div>
+			<div class="save_part">
+				<label>模板描述：</label>
+				<textarea id="sub_module_dis"></textarea>
+			</div>
+			<div class="btn_box">
+				<button class="submit_sub" onclick="saveok(this)">提交</button>
+				<button class="cancel_sub" onclick="savecancel()">取消</button>
+			</div>
+		</div>
+		<div id="show_module_list"></div>
+		<button class="saveas_submodule" onclick="saveas_submodule(this)" id="saveas_submodule">存为子模板</button>
+	</div>
+</body>
+</html>

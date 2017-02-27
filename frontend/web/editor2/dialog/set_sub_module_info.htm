@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="dialog.js">
+    
+</script>
+<script type="text/javascript">
+	var window_ = parent.parent.window;
+	var $ = window_.$;
+
+    document.write("<link href='../language/"+lang.bF+".css' type='text/css' rel='stylesheet'>");
+    document.write("<link href='../skin/"+config.Skin+"/dialog.css' type='text/css' rel='stylesheet'>");
+    var bm = lang["addSubModule"];
+    document.write("<title>" + bm + "</title>");
+    var aJ = cc['action'];
+    var aa = "";
+    var cX = "";
+    var Bo;
+    var Gi;
+    var wO;
+    var qv = "";
+    
+    var bm = lang["DlgSelCor"] + "(" + aa + ")";
+    document.write("<title>" + bm + "</title>");
+    function aq() {
+        lang.ag(document);
+        $("Table_ShowColor").bgColor = cX;
+        $("Span_RGB").innerHTML = cX;
+        $("D_SelColor").value = cX;
+        var qj = "cbox_" + cX.substr(1);
+        var ju = $(qj);
+        if (ju) {
+            ah(ju);
+        }
+        parent.ar(bm);
+    };
+ 
+ 
+ 
+ 
+    
+    function ok() {
+        parent.bV();
+    };
+     
+</script>
+<style>
+.boxNormal {
+	border: 1px solid #d4d0c8
+}
+
+.boxOver {
+	border-width: 1px;
+	border-color: #ffffff #000000 #000000 #ffffff;
+	border-style: solid
+}
+
+.boxSelected {
+	border-width: 1px;
+	border-color: #000000 #ffffff #ffffff #000000;
+	border-style: inset
+}
+</style>
+</head>
+<body onload="aq()">
+	<div id="set_sub_module_info">
+		模板名称：<input type="text" class="sub_module_name" />
+		模板描述：<textarea class="sub_module_dis"></textarea>
+		<button onclick="ok()">提交</button>
+	</div>
+</body>
+</html>

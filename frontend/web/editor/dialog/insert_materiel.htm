@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="dialog.js"></script>
+<script type="text/javascript">
+    document.write("<link href='../language/"+lang.bF+".css' type='text/css' rel='stylesheet'>");
+    document.write("<link href='../skin/"+config.Skin+"/dialog.css' type='text/css' rel='stylesheet'>");
+    var bm = lang["addMetial"], data;
+    document.write("<title>" + bm + "</title>");
+    var window_ = parent.parent.window;
+    function aq() {
+        lang.ag(document);
+        parent.ar(bm);
+        getData();
+    };
+    function getData(){
+        var html = '';
+    	data = parent.parent.$.addDataToProduce();
+    	for(var i in data){
+    	    html += '<div class="part">'+i + '<span class="iblock">';
+    	    for(var j in data[i]){
+    	        html += '<span class="blue" onclick="ok(this);" val="'+j+'" text="'+i+'">'+j+'</span>';
+    	    }
+    	    html += '</span></div>';
+    	}
+    	document.getElementById('insert_materiel').innerHTML = html
+    }
+    function ok(obj){
+        if(obj.getAttribute('disabled')){
+            return;
+        }
+        var type = obj.getAttribute('text');
+        if(window_.REACTANT){
+            window_.REACTANT.remove();
+            window_.REACTANT = null;
+        }
+        
+        obj.setAttribute('disabled', 'disabled');
+        var title = obj.getAttribute('text');
+        var value = data[title][obj.getAttribute('val')];
+        var len = value.trim().length;
+        EWIN.insertHTML('&nbsp;<span class="add_materiel_data" type="'+type+'">'+ value +'</span>&nbsp;');
+        parent.parent.window.expUpdate = true;
+        parent.parent.window.noLoadTip = false;
+        parent.bV();
+    }
+</script>
+<style>
+	body{
+		width: 500px;
+	}
+	#insert_materiel{
+		padding: 10px;
+		height: 240px;	
+	    overflow: auto;
+	}
+	#insert_materiel .part{
+		padding: 5px 0px;
+	    display: block;
+	    color: #666;
+	}
+	.blue{
+		color: #428bca;
+	    cursor: pointer;
+	    display: inline-block;
+	    padding: 0px 10px;
+	}   
+	.iblock{
+		display: block;
+		padding-left: 20px;
+	}
+</style>
+</head>
+<body onload="aq()">
+	<div id="insert_materiel">
+		
+	</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+﻿body{
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 12pt;
+}
+img{
+	max-width: 100%;
+}
+.add_materiel_btn{
+	color: #428bca;
+	padding: 0px 2px;
+}
+input[readonly]{
+	border: none;
+    color: #428bca;
+}
