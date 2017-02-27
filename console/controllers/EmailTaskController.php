@@ -1,6 +1,7 @@
 <?php
 namespace console\controllers;
 
+use frontend\models\TaskResult;
 use yii\console\Controller;
 use frontend\models\EmailTask;
 use frontend\tools\ExcelTool;
@@ -44,15 +45,18 @@ class EmailTaskController extends Controller{
         $excel = new ExcelTool(ExcelTool::READ, $excelFile, $fileType);
         $excelData = $excel->readExcel($excelFile);
         
-        $emailCount = count($excelData) - 2;
+        $emailCount = count($excelData) - 1;
         $taskModel->UpdateTaskById($taskId, [
-            'total_emails' => count($excelData) - 2
+            'total_emails' => count($excelData) - 1
         ]);
         
-        $titleList = $excelData[0];
-        unset($excelData[0]);
-        
+//         $titleList = $excelData[0];
+//         unset($excelData[0]);
         $this->_sendEmails($taskId, $excelData);
+
+        $taskModel->UpdateTaskById($taskId, [
+            'task_status' => 3
+        ]);
     }
     
     private function _sendEmails($taskId, $excelData) {
@@ -84,34 +88,83 @@ class EmailTaskController extends Controller{
         if(empty($template)) {
             return false;
         }
+
+        $attachments = [];
+        if($template['attachment']) {
+            $attachmentDir = \Yii::$app->params['file_upload_path'] . $task['file_path'] . '\attachments\\';
+            foreach(scandir($attachmentDir) as $file) {
+                if($file == '.' || $file == '..') {
+                    continue;
+                }
+                if(is_file($attachmentDir . $file)) {
+                    $attachments[] =  $file;
+                }
+            }
+        }
         
+        $titleList = $excelData[0];
+        // var_dump($titleList);die;
+        unset($excelData[0]);
+
         // 循环发送邮件
         foreach ($excelData as $line => $data){
             foreach ($data as $key => $val) {
                 $data[$this->_getABC($key+1)] = $val;
             }
-            
+
             if(!empty($data[0])) {
+                $from = $transport['username'];
+                $to = $data[$template['to']];
+                $subject = $template['subject'];
+                $htmlBody = $this->_handleTemplateStr($template['body'], $data, $titleList);
+                $htmlBody .= '<img src="http://dev.email.integle.com/email/read" width="1px" height="1px"/>';
+                $emailAttachments = [];
+
                 $mail = \Yii::$app->mailer->compose();
                 $mail->setFrom($transport['username']);
-                $mail->setTo($data[0]);
+                $mail->setTo($data[$template['to']]);
                 $mail->setSubject($template['subject']);
-                $mail->setHtmlBody($this->_handleTemplateStr($template['body'], $data));
-                if($mail->send()) {
-                    echo 'send successed!';
-                    $task->updateCounters([
-                        'succ_emails' => 1
-                    ]);
-                } else {
-                    echo 'send failed...';
-                    $task->updateCounters([
-                        'fail_emails' => 1
-                    ]);
+                $mail->setHtmlBody($htmlBody);
+                foreach($attachments as $attachment) {
+                    $excelColContent = iconv('UTF-8', 'gbk', $data[$template['attachment_excel_col']]);
+                    if(strpos($attachment, $excelColContent) === 0) {
+                        // array_push($emailAttachments, iconv('gbk', 'UTF-8', $attachment));
+                        $mail->attach($attachmentDir . $attachment, ['fileName' => iconv('gbk', 'UTF-8', $attachment)]);
+                    }
                 }
+
+                try {
+                    if ($mail->send()) {
+                        echo '----------------------';
+                        $resultStatus = 1;
+                        $task->updateCounters([
+                            'succ_emails' => 1
+                        ]);
+                    } else {
+                        $resultStatus = 2;
+                        echo 'send failed...';
+                        $task->updateCounters([
+                            'fail_emails' => 1
+                        ]);
+                    }
+                } catch(Exception $e) {
+                    echo '----------------------';
+                    var_dump($e);
+                }
+                die;
+
+                $taskResultModel = new TaskResult();
+                $taskResultModel->setAttributes([
+                    'task_id' => $taskId,
+                    'to' => $to,
+                    'subject' => $subject,
+                    'body' => $htmlBody,
+                    'attachments' => implode(';', $emailAttachments),
+                    'status' => $resultStatus
+                ]);
+                $taskResultModel->save();
             }
         }
-        
-        // var_dump($excelData);
     }
     
     /**
@@ -122,17 +175,31 @@ class EmailTaskController extends Controller{
      * @param array $data
      * @copyright 2017年2月24日 下午3:01:36
      */
-    private function _handleTemplateStr($str, $data) {
+    private function _handleTemplateStr($str, $data, $titleArr) {
+//         var_dump($str);
+//         var_dump($data);
+//         var_dump($titleArr);
         $matches = [];
-        preg_match_all('/{{[a-zA-Z]\d*}}/', $str, $matches);
+//         $str = iconv('UTF-8', 'gbk', $str);
+        echo $str;
+        preg_match_all('/(?<={{)\w+}}/', $str, $matches);
+        var_dump($matches);
         $matches = $matches[0];
         foreach($matches as $match) {
             $key = trim(substr($match, 2, strlen($match)-4));
+            foreach ($titleArr as $col => $title) {
+                if($title === $key) {
+                    echo 'matched.............';
+                    $key = $col;
+                    break;
+                }
+            }
             if(isset($data[$key])) {
                 $str = str_replace($match, $data[$key], $str);
             }
         }
         return $str;
+        die;
     }
     
     /**

@@ -2,6 +2,27 @@
  * 
  */
 $(document).ready(function() {
+	// 生成Excel标题单选框
+    function generateRadiosHtml(radios, name) {
+        var radioHtml = '';
+        for(var key in radios) {
+            radioHtml += '<div class="radio">';
+            radioHtml += '<input type="radio" name="'+name+'" value="'+key+'"/><label>'+radios[key]+'</label>';
+            radioHtml += '</div>';
+        }
+        return radioHtml;
+    }
+
+	function showToRadios(radios) {
+		var radioHtml = '';
+		for(var key in radios) {
+			radioHtml += '<div class="radio">';
+			radioHtml += '<input type="radio" name="to" value="'+key+'"/><label>'+radios[key]+'</label>';
+			radioHtml += '</div>';
+		}
+		$('#to-list').html(radioHtml);
+	}
+
 	// Excel文件上传
 	$('#excel-upload').fileupload({
         url: '/email/ajax-file-upload',
@@ -10,7 +31,8 @@ $(document).ready(function() {
         	'is_attachment': 0
         },
         start: function(e) {
-        	$("#attachment-tr .file-upload-button").addClass('btn-disabled');
+			$('#to-tr, #subject-tr, #body-title-td, #body-content-td, #has-attachment-tr').addClass('disabled');
+        	// $("#attachment-tr .file-upload-button").addClass('btn-disabled');
         	$('#excel-upload-progress .progress-bar-success').css('width', '0%');
             $('#excel-upload-progress .progress-percentage').html('0%');
         	$('#excel-upload-progress').css('display', 'inline-block');
@@ -20,6 +42,8 @@ $(document).ready(function() {
         	if(result.status == 1) {
         		$('#excel-upload').attr('task_dir', result.data.task_dir);
         		$('#excel-upload').attr('file_name', result.data.file_name);
+                $('#to-list').html(generateRadiosHtml(result.data.titles, 'to'));
+                $('#attachment-excel-col').html(generateRadiosHtml(result.data.titles, 'attachment_excel_col'));
         		// $('#excel-upload').attr('save_name', result.data.save_name);
         		$('#attachment-upload').fileupload({
         			formData: {
@@ -27,7 +51,8 @@ $(document).ready(function() {
         	        	'task_dir': result.data.task_dir
         	        }
         		});
-        		$("#attachment-tr .file-upload-button").removeClass('btn-disabled');
+				$('#to-tr, #subject-tr, #body-title-td, #body-content-td, #has-attachment-tr').removeClass('disabled');
+        		// $("#attachment-tr .file-upload-button").removeClass('btn-disabled');
         	}
         },
         progressall: function (e, data) {
@@ -57,6 +82,14 @@ $(document).ready(function() {
             $('#attachment-upload-progress .progress-percentage').html(progress + '%');
         }
     });
+
+    $('#attachment-checkbox').click(function() {
+        if($(this).is(':checked')) {
+            $('#attachment-setting').show();
+        } else {
+            $('#attachment-setting').hide();
+        }
+    });
 	
 	$('#new-task').click(function() {
 		$.ajax({
@@ -76,10 +109,11 @@ $(document).ready(function() {
 					encryption: 'tls'
 				}, 
 				template_data : {
-					subject: $('#subject').val(),
+					to: $('input:radio[name="to"]:checked').val(),
+                    subject: $('#subject').val(),
 					body: '<p>邮件正文<p><p>邮件正文<p><p>邮件正文<p><p>邮件正文<p><p>邮件正文<p>',
-					attachment: $('#attachment').is(':checked') ? 1 : 0,
-					attachment_excel_col: $('#attachment-excel-col').val()
+					attachment: $('#attachment-checkbox').is(':checked') ? 1 : 0,
+					attachment_excel_col: $('input:radio[name="attachment_excel_col"]:checked').val()
 				}
 			},
 			success: function(res) {

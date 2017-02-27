@@ -1,0 +1,88 @@
+@CHARSET "UTF-8";
+table,
+td,
+th {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+table {
+    width: 100%
+}
+
+td,
+th {
+    border: 1px solid #bcbcbc;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+th {
+    background: #42b983;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    cursor: pointer
+}
+
+tr:nth-of-type(odd) {
+    background: #fff
+}
+
+tr:nth-of-type(even) {
+    background: #eee
+}
+
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 21px 0;
+    border-radius: 3px;
+}
+
+.pagination > li {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    line-height: 1.5;
+    text-decoration: none;
+    color: #009a61;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-left: -1px;
+    list-style: none;
+}
+
+.pagination > li > a {
+    text-decoration: none;
+}
+
+.pagination .active {
+    border-color: #009a61;
+    background-color: #009a61;
+}
+
+.pagination .active > a {
+    color: #fff;
+}
+
+.pagination .active:hover {
+    background: #009a61;
+    cursor: default;
+}
+
+.pagination > li:first-child {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.pagination > li:last-child {
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}

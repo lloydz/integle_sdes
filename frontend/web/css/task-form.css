@@ -147,10 +147,30 @@ input[type=text]:focus, input[type=password]:focus {
 	float: right;
 }
 
-.btn-disabled {
+.disabled {
 	opacity: 0.3;
-    cursor: default;	
-	point-events: none;
+    cursor: default;
+    pointer-events: none;
+}
+
+.form-title {
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+}
+
+.form-title>label {
+    font-weight: bold;
+}
+.form-title>input {
+    width: 400px;
+    margin-left: 30px;
+    border-color: #1F99DF;
+    box-shadow: 0px 0px 1px #abdbff;
+    -webkit-box-shadow: 0px 0px 1px #abdbff;
+    background: none;
+    text-align: left;
 }
 
 .form-div {
@@ -182,6 +202,40 @@ fieldset {
 
 .radio-list input[type=radio] {
 	vertical-align: -2px;
+}
+
+.form-bottom {
+    text-align: center;
+    margin-top: 40px;
+}
+
+#new-task {
+    width: 120px;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    color: #fff;
+    background-color: #4183bd;
+}
+
+#new-task:hover {
+    background-color: #0060b5;
 }
 
 /**

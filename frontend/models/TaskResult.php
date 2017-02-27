@@ -5,24 +5,25 @@ namespace frontend\models;
 use Yii;
 
 /**
- * This is the model class for table "task_template".
+ * This is the model class for table "task_result".
  *
  * @property integer $id
  * @property integer $task_id
  * @property string $to
  * @property string $subject
  * @property string $body
- * @property integer $attachment
- * @property string $attachment_excel_col
+ * @property string $attachments
+ * @property integer $status
+ * @property string $create_time
  */
-class TaskTemplate extends \yii\db\ActiveRecord
+class TaskResult extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'task_template';
+        return 'task_result';
     }
 
     /**
@@ -31,10 +32,11 @@ class TaskTemplate extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['task_id', 'attachment'], 'integer'],
+            [['task_id'], 'required'],
+            [['task_id', 'status'], 'integer'],
             [['body'], 'string'],
-            [['to', 'subject'], 'string', 'max' => 255],
-            [['attachment_excel_col'], 'string', 'max' => 16],
+            [['create_time'], 'safe'],
+            [['to', 'subject', 'attachments'], 'string', 'max' => 255],
         ];
     }
 
@@ -49,8 +51,9 @@ class TaskTemplate extends \yii\db\ActiveRecord
             'to' => 'To',
             'subject' => 'Subject',
             'body' => 'Body',
-            'attachment' => 'Attachment',
-            'attachment_excel_col' => 'Attachment Excel Col',
+            'attachments' => 'Attachments',
+            'status' => 'Status',
+            'create_time' => 'Create Time',
         ];
     }
 }

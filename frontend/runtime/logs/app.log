@@ -9242,3 +9242,542 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1487929202.557
     'REQUEST_TIME' => 1487929202
 ]
+2017-02-27 07:08:01 [127.0.0.1][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'date() expects at least 1 parameter, 0 given' in D:\Projects\integle_sdes\frontend\controllers\EmailController.php:21
+Stack trace:
+#0 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\InlineAction.php(57): frontend\controllers\EmailController->actionIndex()
+#1 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\InlineAction.php(57): ::call_user_func_array:{D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\InlineAction.php:57}()
+#2 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams()
+#3 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Module.php(523): yii\base\Controller->runAction()
+#4 D:\Projects\integle_sdes\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction()
+#5 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest()
+#6 D:\Projects\integle_sdes\frontend\web\index.php(17): yii\base\Application->run()
+#7 {main}
+2017-02-27 07:08:01 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    '_csrf' => '0a689aca8514891e60b6256b01dc46b6c6ed97f0a44a92f1a57bb0d329fc45a5a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"LIhBVMgu0Lr_rAQV27MJrtTIbMr-uUWt\";}'
+    'advanced-frontend' => 'b83a48hgbfj0u275c1n0kb33i4'
+    '_csrf-frontend' => '714eb3681e3481e4d4bb8b97048f99c836342f08faaae9089530d87c12397094a:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"65dOzGS69Y2207LMGvks28D_7yElmfvd\";}'
+    'PHPSESSID' => 'csuvs4t128gv1sdselsine4hd7'
+    'gr_user_id' => '4b06bc44-70f3-4079-8ebc-2a37eb407713'
+    'Hm_lvt_25e88d6ab9b8dbad58135718278933d1' => '1486951890,1487663415,1487663671,1487821387'
+    'Hm_lpvt_25e88d6ab9b8dbad58135718278933d1' => '1487929590'
+    'integle_session' => 'gn9dk8arn1b80l48kae56qtuk1'
+]
+
+$_SERVER = [
+    'REDIRECT_PATH_INFO' => 'email'
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'dev.email.integle.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://dev.email.integle.com/email/list'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => '_csrf=0a689aca8514891e60b6256b01dc46b6c6ed97f0a44a92f1a57bb0d329fc45a5a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22LIhBVMgu0Lr_rAQV27MJrtTIbMr-uUWt%22%3B%7D; advanced-frontend=b83a48hgbfj0u275c1n0kb33i4; _csrf-frontend=714eb3681e3481e4d4bb8b97048f99c836342f08faaae9089530d87c12397094a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%2265dOzGS69Y2207LMGvks28D_7yElmfvd%22%3B%7D; PHPSESSID=csuvs4t128gv1sdselsine4hd7; gr_user_id=4b06bc44-70f3-4079-8ebc-2a37eb407713; Hm_lvt_25e88d6ab9b8dbad58135718278933d1=1486951890,1487663415,1487663671,1487821387; Hm_lpvt_25e88d6ab9b8dbad58135718278933d1=1487929590; integle_session=gn9dk8arn1b80l48kae56qtuk1'
+    'PATH' => 'C:\\Users\\Administrator\\AppData\\Roaming\\InDraw\\resources\\lib\\Commons\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;D:\\wamp\\bin\\php\\php5.5.12\\;C:\\Program Files\\TortoiseGit\\bin;C:\\Windows\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win32) PHP/5.5.12 Server at dev.email.integle.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win32) PHP/5.5.12'
+    'SERVER_NAME' => 'dev.email.integle.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => 'D:/Projects/integle_sdes/frontend/web/index.php'
+    'REMOTE_PORT' => '58485'
+    'REDIRECT_URL' => '/email'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/email'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1488175680.927
+    'REQUEST_TIME' => 1488175680
+]
+2017-02-27 15:03:27 [127.0.0.1][-][-][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Call to a member function getUniqueId() on a non-object' in D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Controller.php:328
+Stack trace:
+#0 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Controller.php(130): yii\base\Action->getUniqueId()
+#1 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Module.php(523): yii\base\Controller->runAction()
+#2 D:\Projects\integle_sdes\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction()
+#3 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest()
+#4 D:\Projects\integle_sdes\frontend\web\index.php(17): yii\base\Application->run()
+#5 {main}
+2017-02-27 15:03:27 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    '_csrf' => '0a689aca8514891e60b6256b01dc46b6c6ed97f0a44a92f1a57bb0d329fc45a5a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"LIhBVMgu0Lr_rAQV27MJrtTIbMr-uUWt\";}'
+    'advanced-frontend' => 'b83a48hgbfj0u275c1n0kb33i4'
+    '_csrf-frontend' => '714eb3681e3481e4d4bb8b97048f99c836342f08faaae9089530d87c12397094a:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"65dOzGS69Y2207LMGvks28D_7yElmfvd\";}'
+    'PHPSESSID' => 'csuvs4t128gv1sdselsine4hd7'
+    'gr_user_id' => '4b06bc44-70f3-4079-8ebc-2a37eb407713'
+    'Hm_lvt_25e88d6ab9b8dbad58135718278933d1' => '1486951890,1487663415,1487663671,1487821387'
+    'Hm_lpvt_25e88d6ab9b8dbad58135718278933d1' => '1487929590'
+    'integle_session' => 'gn9dk8arn1b80l48kae56qtuk1'
+]
+
+$_SERVER = [
+    'REDIRECT_PATH_INFO' => 'email'
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'dev.email.integle.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://dev.email.integle.com/email/list'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => '_csrf=0a689aca8514891e60b6256b01dc46b6c6ed97f0a44a92f1a57bb0d329fc45a5a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22LIhBVMgu0Lr_rAQV27MJrtTIbMr-uUWt%22%3B%7D; advanced-frontend=b83a48hgbfj0u275c1n0kb33i4; _csrf-frontend=714eb3681e3481e4d4bb8b97048f99c836342f08faaae9089530d87c12397094a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%2265dOzGS69Y2207LMGvks28D_7yElmfvd%22%3B%7D; PHPSESSID=csuvs4t128gv1sdselsine4hd7; gr_user_id=4b06bc44-70f3-4079-8ebc-2a37eb407713; Hm_lvt_25e88d6ab9b8dbad58135718278933d1=1486951890,1487663415,1487663671,1487821387; Hm_lpvt_25e88d6ab9b8dbad58135718278933d1=1487929590; integle_session=gn9dk8arn1b80l48kae56qtuk1'
+    'PATH' => 'C:\\Users\\Administrator\\AppData\\Roaming\\InDraw\\resources\\lib\\Commons\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;D:\\wamp\\bin\\php\\php5.5.12\\;C:\\Program Files\\TortoiseGit\\bin;C:\\Windows\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win32) PHP/5.5.12 Server at dev.email.integle.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win32) PHP/5.5.12'
+    'SERVER_NAME' => 'dev.email.integle.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => 'D:/Projects/integle_sdes/frontend/web/index.php'
+    'REMOTE_PORT' => '59930'
+    'REDIRECT_URL' => '/email'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/email'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1488179007.54
+    'REQUEST_TIME' => 1488179007
+]
+2017-02-27 15:55:04 [127.0.0.1][-][-][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "src/images/logo.png".' in D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\Projects\integle_sdes\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('src/images/logo...', Array)
+#1 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 D:\Projects\integle_sdes\frontend\web\index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in D:\Projects\integle_sdes\vendor\yiisoft\yii2\web\Application.php:114
+Stack trace:
+#0 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\Projects\integle_sdes\frontend\web\index.php(17): yii\base\Application->run()
+#2 {main}
+2017-02-27 15:55:04 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'gr_user_id' => '7ce63baa-964c-4636-8e84-4c2cd460ddd8'
+    'dev_ygu' => '04e36bb6817f8fe9a94b62decd46ffad'
+    '_csrf-frontend' => 'fea15fa4f7d1368b59d0ae0b519b8c7330127ebbbcd86676f701383d3c9a792ba:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"xUOCpvHoaZ0yj2WEWyA5JRFzXBGhFfyM\";}'
+    'ygu' => '6fed1c3851234833274be2b7e776d922'
+    'gr_session_id_800d9d680f5e1d72' => '81a7b0ab-1ea4-4654-b4da-71f988be847f'
+    'Hm_lvt_25e88d6ab9b8dbad58135718278933d1' => '1486951890,1487663415,1487663671,1487821387'
+    'Hm_lpvt_25e88d6ab9b8dbad58135718278933d1' => '1488181120'
+    'integle_session' => '9t5g9pgag53nu8529ol9oenq07'
+]
+
+$_SERVER = [
+    'REDIRECT_PATH_INFO' => 'src/images/logo.png'
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'dev.email.integle.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_ACCEPT' => 'image/webp,image/*,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://dev.email.integle.com/email'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'gr_user_id=7ce63baa-964c-4636-8e84-4c2cd460ddd8; dev_ygu=04e36bb6817f8fe9a94b62decd46ffad; _csrf-frontend=fea15fa4f7d1368b59d0ae0b519b8c7330127ebbbcd86676f701383d3c9a792ba%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22xUOCpvHoaZ0yj2WEWyA5JRFzXBGhFfyM%22%3B%7D; ygu=6fed1c3851234833274be2b7e776d922; gr_session_id_800d9d680f5e1d72=81a7b0ab-1ea4-4654-b4da-71f988be847f; Hm_lvt_25e88d6ab9b8dbad58135718278933d1=1486951890,1487663415,1487663671,1487821387; Hm_lpvt_25e88d6ab9b8dbad58135718278933d1=1488181120; integle_session=9t5g9pgag53nu8529ol9oenq07'
+    'PATH' => 'C:\\Users\\Administrator\\AppData\\Roaming\\InDraw\\resources\\lib\\Commons\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;D:\\wamp\\bin\\php\\php5.5.12\\;C:\\Program Files\\TortoiseGit\\bin;C:\\Windows\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win32) PHP/5.5.12 Server at dev.email.integle.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win32) PHP/5.5.12'
+    'SERVER_NAME' => 'dev.email.integle.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => 'D:/Projects/integle_sdes/frontend/web/index.php'
+    'REMOTE_PORT' => '60738'
+    'REDIRECT_URL' => '/src/images/logo.png'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/src/images/logo.png'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1488182104.784
+    'REQUEST_TIME' => 1488182104
+]
+2017-02-27 15:55:07 [127.0.0.1][-][-][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "src/images/logo.png".' in D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\Projects\integle_sdes\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('src/images/logo...', Array)
+#1 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 D:\Projects\integle_sdes\frontend\web\index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in D:\Projects\integle_sdes\vendor\yiisoft\yii2\web\Application.php:114
+Stack trace:
+#0 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\Projects\integle_sdes\frontend\web\index.php(17): yii\base\Application->run()
+#2 {main}
+2017-02-27 15:55:07 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'gr_user_id' => '7ce63baa-964c-4636-8e84-4c2cd460ddd8'
+    'dev_ygu' => '04e36bb6817f8fe9a94b62decd46ffad'
+    '_csrf-frontend' => 'fea15fa4f7d1368b59d0ae0b519b8c7330127ebbbcd86676f701383d3c9a792ba:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"xUOCpvHoaZ0yj2WEWyA5JRFzXBGhFfyM\";}'
+    'ygu' => '6fed1c3851234833274be2b7e776d922'
+    'gr_session_id_800d9d680f5e1d72' => '81a7b0ab-1ea4-4654-b4da-71f988be847f'
+    'Hm_lvt_25e88d6ab9b8dbad58135718278933d1' => '1486951890,1487663415,1487663671,1487821387'
+    'Hm_lpvt_25e88d6ab9b8dbad58135718278933d1' => '1488181120'
+    'integle_session' => '9t5g9pgag53nu8529ol9oenq07'
+]
+
+$_SERVER = [
+    'REDIRECT_PATH_INFO' => 'src/images/logo.png'
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'dev.email.integle.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_ACCEPT' => 'image/webp,image/*,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://dev.email.integle.com/email'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'gr_user_id=7ce63baa-964c-4636-8e84-4c2cd460ddd8; dev_ygu=04e36bb6817f8fe9a94b62decd46ffad; _csrf-frontend=fea15fa4f7d1368b59d0ae0b519b8c7330127ebbbcd86676f701383d3c9a792ba%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22xUOCpvHoaZ0yj2WEWyA5JRFzXBGhFfyM%22%3B%7D; ygu=6fed1c3851234833274be2b7e776d922; gr_session_id_800d9d680f5e1d72=81a7b0ab-1ea4-4654-b4da-71f988be847f; Hm_lvt_25e88d6ab9b8dbad58135718278933d1=1486951890,1487663415,1487663671,1487821387; Hm_lpvt_25e88d6ab9b8dbad58135718278933d1=1488181120; integle_session=9t5g9pgag53nu8529ol9oenq07'
+    'PATH' => 'C:\\Users\\Administrator\\AppData\\Roaming\\InDraw\\resources\\lib\\Commons\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;D:\\wamp\\bin\\php\\php5.5.12\\;C:\\Program Files\\TortoiseGit\\bin;C:\\Windows\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win32) PHP/5.5.12 Server at dev.email.integle.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win32) PHP/5.5.12'
+    'SERVER_NAME' => 'dev.email.integle.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => 'D:/Projects/integle_sdes/frontend/web/index.php'
+    'REMOTE_PORT' => '60741'
+    'REDIRECT_URL' => '/src/images/logo.png'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/src/images/logo.png'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1488182107.197
+    'REQUEST_TIME' => 1488182107
+]
+2017-02-27 15:56:13 [127.0.0.1][-][-][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "src/images/logo.png".' in D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\Projects\integle_sdes\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('src/images/logo...', Array)
+#1 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 D:\Projects\integle_sdes\frontend\web\index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in D:\Projects\integle_sdes\vendor\yiisoft\yii2\web\Application.php:114
+Stack trace:
+#0 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\Projects\integle_sdes\frontend\web\index.php(17): yii\base\Application->run()
+#2 {main}
+2017-02-27 15:56:13 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'gr_user_id' => '7ce63baa-964c-4636-8e84-4c2cd460ddd8'
+    'dev_ygu' => '04e36bb6817f8fe9a94b62decd46ffad'
+    '_csrf-frontend' => 'fea15fa4f7d1368b59d0ae0b519b8c7330127ebbbcd86676f701383d3c9a792ba:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"xUOCpvHoaZ0yj2WEWyA5JRFzXBGhFfyM\";}'
+    'ygu' => '6fed1c3851234833274be2b7e776d922'
+    'gr_session_id_800d9d680f5e1d72' => '81a7b0ab-1ea4-4654-b4da-71f988be847f'
+    'Hm_lvt_25e88d6ab9b8dbad58135718278933d1' => '1486951890,1487663415,1487663671,1487821387'
+    'Hm_lpvt_25e88d6ab9b8dbad58135718278933d1' => '1488181120'
+    'integle_session' => '9t5g9pgag53nu8529ol9oenq07'
+]
+
+$_SERVER = [
+    'REDIRECT_PATH_INFO' => 'src/images/logo.png'
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'dev.email.integle.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_ACCEPT' => 'image/webp,image/*,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://dev.email.integle.com/email'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'gr_user_id=7ce63baa-964c-4636-8e84-4c2cd460ddd8; dev_ygu=04e36bb6817f8fe9a94b62decd46ffad; _csrf-frontend=fea15fa4f7d1368b59d0ae0b519b8c7330127ebbbcd86676f701383d3c9a792ba%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22xUOCpvHoaZ0yj2WEWyA5JRFzXBGhFfyM%22%3B%7D; ygu=6fed1c3851234833274be2b7e776d922; gr_session_id_800d9d680f5e1d72=81a7b0ab-1ea4-4654-b4da-71f988be847f; Hm_lvt_25e88d6ab9b8dbad58135718278933d1=1486951890,1487663415,1487663671,1487821387; Hm_lpvt_25e88d6ab9b8dbad58135718278933d1=1488181120; integle_session=9t5g9pgag53nu8529ol9oenq07'
+    'PATH' => 'C:\\Users\\Administrator\\AppData\\Roaming\\InDraw\\resources\\lib\\Commons\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;D:\\wamp\\bin\\php\\php5.5.12\\;C:\\Program Files\\TortoiseGit\\bin;C:\\Windows\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win32) PHP/5.5.12 Server at dev.email.integle.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win32) PHP/5.5.12'
+    'SERVER_NAME' => 'dev.email.integle.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => 'D:/Projects/integle_sdes/frontend/web/index.php'
+    'REMOTE_PORT' => '60768'
+    'REDIRECT_URL' => '/src/images/logo.png'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/src/images/logo.png'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1488182173.138
+    'REQUEST_TIME' => 1488182173
+]
+2017-02-27 15:56:14 [127.0.0.1][-][-][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "src/images/logo.png".' in D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\Projects\integle_sdes\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('src/images/logo...', Array)
+#1 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 D:\Projects\integle_sdes\frontend\web\index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in D:\Projects\integle_sdes\vendor\yiisoft\yii2\web\Application.php:114
+Stack trace:
+#0 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\Projects\integle_sdes\frontend\web\index.php(17): yii\base\Application->run()
+#2 {main}
+2017-02-27 15:56:14 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'gr_user_id' => '7ce63baa-964c-4636-8e84-4c2cd460ddd8'
+    'dev_ygu' => '04e36bb6817f8fe9a94b62decd46ffad'
+    '_csrf-frontend' => 'fea15fa4f7d1368b59d0ae0b519b8c7330127ebbbcd86676f701383d3c9a792ba:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"xUOCpvHoaZ0yj2WEWyA5JRFzXBGhFfyM\";}'
+    'ygu' => '6fed1c3851234833274be2b7e776d922'
+    'gr_session_id_800d9d680f5e1d72' => '81a7b0ab-1ea4-4654-b4da-71f988be847f'
+    'Hm_lvt_25e88d6ab9b8dbad58135718278933d1' => '1486951890,1487663415,1487663671,1487821387'
+    'Hm_lpvt_25e88d6ab9b8dbad58135718278933d1' => '1488181120'
+    'integle_session' => '9t5g9pgag53nu8529ol9oenq07'
+]
+
+$_SERVER = [
+    'REDIRECT_PATH_INFO' => 'src/images/logo.png'
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'dev.email.integle.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_ACCEPT' => 'image/webp,image/*,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://dev.email.integle.com/email'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'gr_user_id=7ce63baa-964c-4636-8e84-4c2cd460ddd8; dev_ygu=04e36bb6817f8fe9a94b62decd46ffad; _csrf-frontend=fea15fa4f7d1368b59d0ae0b519b8c7330127ebbbcd86676f701383d3c9a792ba%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22xUOCpvHoaZ0yj2WEWyA5JRFzXBGhFfyM%22%3B%7D; ygu=6fed1c3851234833274be2b7e776d922; gr_session_id_800d9d680f5e1d72=81a7b0ab-1ea4-4654-b4da-71f988be847f; Hm_lvt_25e88d6ab9b8dbad58135718278933d1=1486951890,1487663415,1487663671,1487821387; Hm_lpvt_25e88d6ab9b8dbad58135718278933d1=1488181120; integle_session=9t5g9pgag53nu8529ol9oenq07'
+    'PATH' => 'C:\\Users\\Administrator\\AppData\\Roaming\\InDraw\\resources\\lib\\Commons\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;D:\\wamp\\bin\\php\\php5.5.12\\;C:\\Program Files\\TortoiseGit\\bin;C:\\Windows\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win32) PHP/5.5.12 Server at dev.email.integle.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win32) PHP/5.5.12'
+    'SERVER_NAME' => 'dev.email.integle.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => 'D:/Projects/integle_sdes/frontend/web/index.php'
+    'REMOTE_PORT' => '60772'
+    'REDIRECT_URL' => '/src/images/logo.png'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/src/images/logo.png'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1488182174.86
+    'REQUEST_TIME' => 1488182174
+]
+2017-02-27 15:56:16 [127.0.0.1][-][-][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "src/images/logo.png".' in D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\Projects\integle_sdes\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('src/images/logo...', Array)
+#1 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 D:\Projects\integle_sdes\frontend\web\index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in D:\Projects\integle_sdes\vendor\yiisoft\yii2\web\Application.php:114
+Stack trace:
+#0 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\Projects\integle_sdes\frontend\web\index.php(17): yii\base\Application->run()
+#2 {main}
+2017-02-27 15:56:16 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'gr_user_id' => '7ce63baa-964c-4636-8e84-4c2cd460ddd8'
+    'dev_ygu' => '04e36bb6817f8fe9a94b62decd46ffad'
+    '_csrf-frontend' => 'fea15fa4f7d1368b59d0ae0b519b8c7330127ebbbcd86676f701383d3c9a792ba:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"xUOCpvHoaZ0yj2WEWyA5JRFzXBGhFfyM\";}'
+    'ygu' => '6fed1c3851234833274be2b7e776d922'
+    'gr_session_id_800d9d680f5e1d72' => '81a7b0ab-1ea4-4654-b4da-71f988be847f'
+    'Hm_lvt_25e88d6ab9b8dbad58135718278933d1' => '1486951890,1487663415,1487663671,1487821387'
+    'Hm_lpvt_25e88d6ab9b8dbad58135718278933d1' => '1488181120'
+    'integle_session' => '9t5g9pgag53nu8529ol9oenq07'
+]
+
+$_SERVER = [
+    'REDIRECT_PATH_INFO' => 'src/images/logo.png'
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'dev.email.integle.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_ACCEPT' => 'image/webp,image/*,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://dev.email.integle.com/email'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'gr_user_id=7ce63baa-964c-4636-8e84-4c2cd460ddd8; dev_ygu=04e36bb6817f8fe9a94b62decd46ffad; _csrf-frontend=fea15fa4f7d1368b59d0ae0b519b8c7330127ebbbcd86676f701383d3c9a792ba%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22xUOCpvHoaZ0yj2WEWyA5JRFzXBGhFfyM%22%3B%7D; ygu=6fed1c3851234833274be2b7e776d922; gr_session_id_800d9d680f5e1d72=81a7b0ab-1ea4-4654-b4da-71f988be847f; Hm_lvt_25e88d6ab9b8dbad58135718278933d1=1486951890,1487663415,1487663671,1487821387; Hm_lpvt_25e88d6ab9b8dbad58135718278933d1=1488181120; integle_session=9t5g9pgag53nu8529ol9oenq07'
+    'PATH' => 'C:\\Users\\Administrator\\AppData\\Roaming\\InDraw\\resources\\lib\\Commons\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;D:\\wamp\\bin\\php\\php5.5.12\\;C:\\Program Files\\TortoiseGit\\bin;C:\\Windows\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win32) PHP/5.5.12 Server at dev.email.integle.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win32) PHP/5.5.12'
+    'SERVER_NAME' => 'dev.email.integle.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => 'D:/Projects/integle_sdes/frontend/web/index.php'
+    'REMOTE_PORT' => '60768'
+    'REDIRECT_URL' => '/src/images/logo.png'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/src/images/logo.png'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1488182176.149
+    'REQUEST_TIME' => 1488182176
+]
+2017-02-27 16:07:23 [127.0.0.1][-][jt73j7261d8j9rbjr8a01r9rk6][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "user/user-info".' in D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\Projects\integle_sdes\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('user/user-info', Array)
+#1 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 D:\Projects\integle_sdes\frontend\web\index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in D:\Projects\integle_sdes\vendor\yiisoft\yii2\web\Application.php:114
+Stack trace:
+#0 D:\Projects\integle_sdes\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\Projects\integle_sdes\frontend\web\index.php(17): yii\base\Application->run()
+#2 {main}
+2017-02-27 16:07:23 [127.0.0.1][-][jt73j7261d8j9rbjr8a01r9rk6][info][application] $_COOKIE = [
+    'gr_user_id' => '7ce63baa-964c-4636-8e84-4c2cd460ddd8'
+    'dev_ygu' => '04e36bb6817f8fe9a94b62decd46ffad'
+    '_csrf-frontend' => 'fea15fa4f7d1368b59d0ae0b519b8c7330127ebbbcd86676f701383d3c9a792ba:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"xUOCpvHoaZ0yj2WEWyA5JRFzXBGhFfyM\";}'
+    'ygu' => '6fed1c3851234833274be2b7e776d922'
+    'integle_session' => '9t5g9pgag53nu8529ol9oenq07'
+    'advanced-frontend' => 'jt73j7261d8j9rbjr8a01r9rk6'
+    'gr_session_id_800d9d680f5e1d72' => '81a7b0ab-1ea4-4654-b4da-71f988be847f'
+    'Hm_lvt_25e88d6ab9b8dbad58135718278933d1' => '1486951890,1487663415,1487663671,1487821387'
+    'Hm_lpvt_25e88d6ab9b8dbad58135718278933d1' => '1488182841'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'user_info' => [
+        'id' => '14831'
+        'email' => 'huajun.h.zhu@integle.com'
+        'phone' => null
+        'name' => null
+        'ticket' => '04e36bb6817f8fe9a94b62decd46ffad'
+        'nick_name' => 'Lloyd Zhu'
+        'real_name' => 'Lloyd Zhu'
+        'big_img' => ''
+        'small_img' => ''
+        'unread_message' => '27'
+        'default_group' => '0'
+    ]
+]
+
+$_SERVER = [
+    'REDIRECT_PATH_INFO' => 'user/user-info'
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'dev.email.integle.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://dev.email.integle.com/email'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'gr_user_id=7ce63baa-964c-4636-8e84-4c2cd460ddd8; dev_ygu=04e36bb6817f8fe9a94b62decd46ffad; _csrf-frontend=fea15fa4f7d1368b59d0ae0b519b8c7330127ebbbcd86676f701383d3c9a792ba%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22xUOCpvHoaZ0yj2WEWyA5JRFzXBGhFfyM%22%3B%7D; ygu=6fed1c3851234833274be2b7e776d922; integle_session=9t5g9pgag53nu8529ol9oenq07; advanced-frontend=jt73j7261d8j9rbjr8a01r9rk6; gr_session_id_800d9d680f5e1d72=81a7b0ab-1ea4-4654-b4da-71f988be847f; Hm_lvt_25e88d6ab9b8dbad58135718278933d1=1486951890,1487663415,1487663671,1487821387; Hm_lpvt_25e88d6ab9b8dbad58135718278933d1=1488182841'
+    'PATH' => 'C:\\Users\\Administrator\\AppData\\Roaming\\InDraw\\resources\\lib\\Commons\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;D:\\wamp\\bin\\php\\php5.5.12\\;C:\\Program Files\\TortoiseGit\\bin;C:\\Windows\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win32) PHP/5.5.12 Server at dev.email.integle.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win32) PHP/5.5.12'
+    'SERVER_NAME' => 'dev.email.integle.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/Projects/integle_sdes/frontend/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => 'D:/Projects/integle_sdes/frontend/web/index.php'
+    'REMOTE_PORT' => '61072'
+    'REDIRECT_URL' => '/user/user-info'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/user/user-info'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1488182843.914
+    'REQUEST_TIME' => 1488182843
+]

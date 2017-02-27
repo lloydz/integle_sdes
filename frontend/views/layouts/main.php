@@ -30,17 +30,35 @@ use frontend\assets\AppAsset;
 <body>
     <?php $this->beginBody() ?>
 	<!-- 内容开始 -->
-	<div class="header">Integle</div>
+	<div class="header">
+    	<div class="left">
+    		<a class="logo" href="http://www.integle.com/" target="_blank" title="返回官网">
+    			<img src="/images/logo.png">
+    		</a>
+    	</div>
+    	
+    	<div class="right">
+    		<?php if(!empty(\Yii::$app->session['user_info'])):?>
+    		<a class="account" href="/user/user-info" target="_blank">
+    			<i class="user-ico mr5"></i>
+    			<?=\Yii::$app->session['user_info']['real_name']?>
+			</a>
+    		<div class="seperator"></div>
+    		<a class="exit" href="/user/logout-account"><i class="signout-ico mr5"></i>退出</a>
+    		<div class="seperator"></div>
+    		<?php endif;?>
+    	</div>
+    </div>
 	<div class="nav">
-		<a class="tab active">新建任务</a>
-		<a class="tab">历史任务</a>
+		<a class="tab<?= Yii::$app->controller->action->id == 'index' ? ' active' : ''?>" href="/email">新建任务</a>
+		<a class="tab<?= Yii::$app->controller->action->id == 'list' ? ' active' : ''?>" href="/email/list">历史任务</a>
 	</div>
 	
 	<div class="container">
 		<?= $content ?>
 	</div>
 	
-	<footer>Copyright©2009-2016</footer>
+	<footer>Copyright©2009-2017 上海鹰谷信息科技有限公司 版权所有 沪ICP备13029136号</footer>
     <?php $this->endBody() ?>
 </body>
 </html>

@@ -2,21 +2,57 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\helpers\FileHelper;
 use frontend\models\EmailTask;
 use frontend\tools\ExcelTool;
+use yii\helpers\Curl;
 
 class EmailController extends Controller
 {
     public $enableCsrfValidation = false;
+    public $userInfo = [];
+    
+    public function beforeAction($action) {
+        parent::beforeAction($action);
+        
+        $this->getUserInfo();
+        
+        if(empty($this->userInfo)) {
+            $this->redirect('http://dev.center.integle.com/user/login?referer=http://dev.email.integle.com/email');
+            Yii::$app->end();
+        }
+        
+        // var_dump($this->userInfo);die;
+        $session = \Yii::$app->session;
+        $session['user_info'] = $this->userInfo;
+        return true;
+    }
+    
+    public function getUserInfo() {
+        $ticket = isset($_COOKIE['dev_ygu']) ? $_COOKIE['dev_ygu'] : NULL;
+        if ($ticket) {
+            // 获取用户信息
+            $url = 'http://dev.center.integle.com/api/user-info';
+            $result = (new Curl())->sendPostCurl($url, [
+                'ticket' => $ticket
+            ]);
+            
+            if (isset($result['status']) && (1 == $result['status'])) {
+                $this->userInfo = $result['data'];
+            }
+        }
+    }
+    
     /**
      * Displays homepage.
      *
      * @return string
      */
     public function actionIndex() {
+        // echo date('Y-m-d: H:i:s');die;
         /* \Yii::$app->mailer->setTransport([
             'class' => 'Swift_SmtpTransport',
             'host' => 'smtp.163.com',
@@ -41,6 +77,22 @@ class EmailController extends Controller
         die; */
         
         return $this->render('index');
+    }
+
+    public function actionList() {
+        $userTasks = EmailTask::find()->andWhere(['creater_id' => '123456']);
+        $pages = new Pagination(['totalCount' =>$userTasks->count(), 'pageSize' => '10']);
+        $pageTasks = $userTasks->offset($pages->offset)->limit($pages->limit)->orderBy('id DESC')->asArray()->all();
+
+        return $this->render('list',[
+            'tasks' => $pageTasks,
+            'pages' => $pages,
+        ]);
+
+        $tasks = EmailTask::findAll([
+            'creater_id' => 123456
+        ]);
+        return $this->render('list', ['tasks' => $tasks]);
     }
     
     /**
@@ -131,6 +183,20 @@ class EmailController extends Controller
         $result = (new EmailTask())->newTask($taskData, $transportData, $templateData);
         
         return $this->ajaxReturn($result['status'], $result['msg'], $result['data']);
+    }
+
+    public function actionRead() {
+        $taskId = \Yii::$app->request->get('task_id', 8);
+        $reader = \Yii::$app->request->get('reader');
+
+        $task = EmailTask::findOne([
+            'id' => $taskId
+        ]);
+        if($task) {
+            $task->updateCounters([
+                'read_emails' => 1
+            ]);
+        }
     }
     
     /**

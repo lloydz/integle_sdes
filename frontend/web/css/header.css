@@ -20,7 +20,7 @@ body {
 }
 
 .header {
-	position: fixed;
+    position: fixed;
     top: 0px;
     height: 50px;
     background-color: #2d323e;
@@ -28,6 +28,91 @@ body {
     z-index: 999;
     color: #fff;
     line-height: 50px;
+}
+
+.header a {
+	text-decoration: none;
+}
+
+.header .left {
+    float: left;
+}
+
+.header .logo {
+    margin-left: 30px;
+    display: inline-block
+}
+
+.header .logo img {
+    display: inline;
+    vertical-align: middle;
+	border: none;
+}
+
+.header .right {
+    float: right;
+}
+
+.header .account {
+    float: left;
+    color: #fff;
+}
+
+.header .account:before {
+    content: "";
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    background: url(/images/icons.png) -18px -191px;
+}
+
+.header .seperator {
+    float: left;
+    width: 1px;
+    height: 34px;
+    margin: 7px 20px;
+}
+
+.header .seperator:before, .header .seperator:after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 17px;
+    float: left;
+    display: block;
+}
+
+.header .seperator:before {
+    background: -ms-linear-gradient(top, #2e323d, #515662);/* IE9+*/
+    background-image: -moz-linear-gradient(top, #2e323d, #515662); /* Firefox */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #2e323d), color-stop(1, #515662)); /* Saf4+, Chrome */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e323d', endColorstr='#515662', GradientType='0'); /* IE9*/
+}
+
+.header .seperator:after {
+    top: 24px;
+    background: -ms-linear-gradient(top, #515662, #2e323d);/* IE9+*/
+    background-image: -moz-linear-gradient(top, #515662, #2e323d); /* Firefox */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #515662), color-stop(1, #2e323d)); /* Saf4+, Chrome */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#515662', endColorstr='#2e323d', GradientType='0'); /* IE*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#515662, endColorstr=#2e323d)";/* IE8+*/
+}
+
+.header .exit {
+    float: left;
+    color: #fff;
+}
+
+.header .exit:before {
+    content: "";
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    background: url(/images/icons.png) -36px -191px;
 }
 
 .nav {
@@ -52,6 +137,7 @@ body {
 	height: 32px;
 	text-align: center;
 	cursor: pointer;
+	text-decoration: none;
 }
 
 .tab.active {
@@ -89,4 +175,14 @@ body {
 
 .tab.active:before {
 	background: url(/images/image.png) left -48px no-repeat;
+}
+
+footer {
+	line-height: 36px;
+    background: #f9f9f9;
+    border-top: 1px solid #cfcfcf;
+    position: relative;
+    z-index: 2301;
+    padding: 0px 30px;
+    text-align: center;
 }
