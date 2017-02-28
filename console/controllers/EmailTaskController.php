@@ -7,6 +7,7 @@ use frontend\models\EmailTask;
 use frontend\tools\ExcelTool;
 use frontend\models\TaskTemplate;
 use frontend\models\TaskTransport;
+use yii\base\Exception;
 
 class EmailTaskController extends Controller{
     
@@ -77,7 +78,7 @@ class EmailTaskController extends Controller{
             'host' => $transport['host'],
             'username' => $transport['username'],
             'password' => $transport['password'],
-            'port' => $transport['port'],
+            'port' => 25,
             'encryption' => $transport['encryption'],
         ]);
         
@@ -103,39 +104,38 @@ class EmailTaskController extends Controller{
         }
         
         $titleList = $excelData[0];
-        // var_dump($titleList);die;
         unset($excelData[0]);
-
         // 循环发送邮件
         foreach ($excelData as $line => $data){
+            /* var_dump($data);
             foreach ($data as $key => $val) {
                 $data[$this->_getABC($key+1)] = $val;
-            }
+            } */
 
             if(!empty($data[0])) {
                 $from = $transport['username'];
-                $to = $data[$template['to']];
-                $subject = $template['subject'];
+                $to = $data[$template['to'] - 1];
+                $subject = $this->_handleTemplateStr($template['subject'], $data, $titleList);
                 $htmlBody = $this->_handleTemplateStr($template['body'], $data, $titleList);
-                $htmlBody .= '<img src="http://dev.email.integle.com/email/read" width="1px" height="1px"/>';
+                $htmlBody .= '<img src="http://dev.email.integle.com/email/read?task_id='.$taskId.'&to='.$to.'" width="1px" height="1px"/>';
                 $emailAttachments = [];
 
                 $mail = \Yii::$app->mailer->compose();
                 $mail->setFrom($transport['username']);
-                $mail->setTo($data[$template['to']]);
-                $mail->setSubject($template['subject']);
+                $mail->setTo($to);
+                $mail->setSubject($subject);
                 $mail->setHtmlBody($htmlBody);
                 foreach($attachments as $attachment) {
-                    $excelColContent = iconv('UTF-8', 'gbk', $data[$template['attachment_excel_col']]);
+                    $excelColContent = iconv('UTF-8', 'gbk', $data[$template['attachment_excel_col'] - 1]);
                     if(strpos($attachment, $excelColContent) === 0) {
-                        // array_push($emailAttachments, iconv('gbk', 'UTF-8', $attachment));
+                        array_push($emailAttachments, iconv('gbk', 'UTF-8', $attachment));
                         $mail->attach($attachmentDir . $attachment, ['fileName' => iconv('gbk', 'UTF-8', $attachment)]);
                     }
                 }
 
                 try {
                     if ($mail->send()) {
-                        echo '----------------------';
+                        echo 'send successed...';
                         $resultStatus = 1;
                         $task->updateCounters([
                             'succ_emails' => 1
@@ -147,11 +147,10 @@ class EmailTaskController extends Controller{
                             'fail_emails' => 1
                         ]);
                     }
-                } catch(Exception $e) {
-                    echo '----------------------';
-                    var_dump($e);
+                } catch(\Exception $e) {
+                    $resultMsg = $e->getMessage();
+                    $resultStatus = 2;
                 }
-                die;
 
                 $taskResultModel = new TaskResult();
                 $taskResultModel->setAttributes([
@@ -160,6 +159,7 @@ class EmailTaskController extends Controller{
                     'subject' => $subject,
                     'body' => $htmlBody,
                     'attachments' => implode(';', $emailAttachments),
+                    'msg' => isset($resultMsg) ? $resultMsg : '',
                     'status' => $resultStatus
                 ]);
                 $taskResultModel->save();
@@ -176,20 +176,14 @@ class EmailTaskController extends Controller{
      * @copyright 2017年2月24日 下午3:01:36
      */
     private function _handleTemplateStr($str, $data, $titleArr) {
-//         var_dump($str);
-//         var_dump($data);
-//         var_dump($titleArr);
         $matches = [];
-//         $str = iconv('UTF-8', 'gbk', $str);
-        echo $str;
-        preg_match_all('/(?<={{)\w+}}/', $str, $matches);
-        var_dump($matches);
+        preg_match_all('/{{(.*?)}}/', $str, $matches);
         $matches = $matches[0];
+        
         foreach($matches as $match) {
             $key = trim(substr($match, 2, strlen($match)-4));
             foreach ($titleArr as $col => $title) {
                 if($title === $key) {
-                    echo 'matched.............';
                     $key = $col;
                     break;
                 }
@@ -198,8 +192,8 @@ class EmailTaskController extends Controller{
                 $str = str_replace($match, $data[$key], $str);
             }
         }
+        
         return $str;
-        die;
     }
     
     /**

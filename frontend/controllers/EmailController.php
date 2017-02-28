@@ -9,6 +9,7 @@ use yii\helpers\FileHelper;
 use frontend\models\EmailTask;
 use frontend\tools\ExcelTool;
 use yii\helpers\Curl;
+use frontend\models\TaskResult;
 
 class EmailController extends Controller
 {
@@ -17,6 +18,9 @@ class EmailController extends Controller
     
     public function beforeAction($action) {
         parent::beforeAction($action);
+        if($action->id == 'read') {
+            return true;
+        }
         
         $this->getUserInfo();
         
@@ -25,7 +29,6 @@ class EmailController extends Controller
             Yii::$app->end();
         }
         
-        // var_dump($this->userInfo);die;
         $session = \Yii::$app->session;
         $session['user_info'] = $this->userInfo;
         return true;
@@ -80,7 +83,9 @@ class EmailController extends Controller
     }
 
     public function actionList() {
-        $userTasks = EmailTask::find()->andWhere(['creater_id' => '123456']);
+        $userTasks = EmailTask::find()->andWhere([
+            'creater_id' => \Yii::$app->session['user_info']['id']
+        ]);
         $pages = new Pagination(['totalCount' =>$userTasks->count(), 'pageSize' => '10']);
         $pageTasks = $userTasks->offset($pages->offset)->limit($pages->limit)->orderBy('id DESC')->asArray()->all();
 
@@ -88,11 +93,6 @@ class EmailController extends Controller
             'tasks' => $pageTasks,
             'pages' => $pages,
         ]);
-
-        $tasks = EmailTask::findAll([
-            'creater_id' => 123456
-        ]);
-        return $this->render('list', ['tasks' => $tasks]);
     }
     
     /**
@@ -131,10 +131,10 @@ class EmailController extends Controller
             
             $excel = new ExcelTool(ExcelTool::READ, $file->tempName, $fileType);
             $excelTitle = $excel->readTitle($file->tempName);
-            $titles = [];
-            foreach ($excelTitle as $key => $title) {
-                $titles[$this->_getABC($key)] = $title;
-            }
+//             $titles = [];
+//             foreach ($excelTitle as $key => $title) {
+//                 $titles[$this->_getABC($key)] = $title;
+//             }
             
             // 保存文件
             // $saveName = uniqid('excel_') . '.' . $file->getExtension();
@@ -146,7 +146,7 @@ class EmailController extends Controller
             return $this->ajaxSuccess('上传成功', [
                 'task_dir' => $taskDir,
                 'file_name' => $file->name,
-                'titles' => $titles
+                'titles' => $excelTitle
             ]);
         // 所传文件为附件
         } else {
@@ -186,16 +186,20 @@ class EmailController extends Controller
     }
 
     public function actionRead() {
-        $taskId = \Yii::$app->request->get('task_id', 8);
-        $reader = \Yii::$app->request->get('reader');
-
-        $task = EmailTask::findOne([
-            'id' => $taskId
-        ]);
-        if($task) {
-            $task->updateCounters([
-                'read_emails' => 1
+        $taskId = \Yii::$app->request->get('task_id');
+        $reader = \Yii::$app->request->get('to');
+        
+        if(!empty($taskId) && !empty($reader)) {
+            $taskResult = TaskResult::findOne([
+                'task_id' => $taskId,
+                'to' => $reader,
+                'status' => 1
             ]);
+            
+            if($taskResult) {
+                $taskResult['is_read'] = 1;
+                $taskResult->save();
+            }
         }
     }
     

@@ -13,6 +13,9 @@ use Yii;
  * @property string $subject
  * @property string $body
  * @property string $attachments
+ * @property string $msg
+ * @property integer $is_read
+ * @property string $read_time
  * @property integer $status
  * @property string $create_time
  */
@@ -33,10 +36,10 @@ class TaskResult extends \yii\db\ActiveRecord
     {
         return [
             [['task_id'], 'required'],
-            [['task_id', 'status'], 'integer'],
+            [['task_id', 'is_read', 'status'], 'integer'],
             [['body'], 'string'],
-            [['create_time'], 'safe'],
-            [['to', 'subject', 'attachments'], 'string', 'max' => 255],
+            [['read_time', 'create_time'], 'safe'],
+            [['to', 'subject', 'attachments', 'msg'], 'string', 'max' => 255],
         ];
     }
 
@@ -52,6 +55,9 @@ class TaskResult extends \yii\db\ActiveRecord
             'subject' => 'Subject',
             'body' => 'Body',
             'attachments' => 'Attachments',
+            'msg' => 'Msg',
+            'is_read' => 'Is Read',
+            'read_time' => 'Read Time',
             'status' => 'Status',
             'create_time' => 'Create Time',
         ];

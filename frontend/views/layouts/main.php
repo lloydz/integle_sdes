@@ -16,6 +16,7 @@ use frontend\assets\AppAsset;
     <title>邮件任务系统</title>
     <link rel="stylesheet" href="/css/header.css"/>
     <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/modal.css"/>
     
     <script>
         if(!-[1,]){
@@ -25,7 +26,10 @@ use frontend\assets\AppAsset;
         var csrfToken = '<?= Yii::$app->request->csrfToken ?>';
     </script>
 
-   
+    <script type="text/javascript" src="/js/lib/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="/js/modal.js"></script>
+     <script type="text/javascript" src="/js/mCustomScrollbar.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
 </head>
 <body>
     <?php $this->beginBody() ?>

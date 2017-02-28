@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="/css/task-form.css"/>
-<script type="text/javascript" src="/js/lib/jquery-3.1.1.js"></script>
 <script type="text/javascript" src="/js/lib/jquery-file-upload/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="/js/lib/jquery-file-upload/jquery.fileupload.js"></script>
 <script type="text/javascript" src="/js/create_task.js"></script>

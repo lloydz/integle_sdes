@@ -72,6 +72,7 @@ class EmailTask extends \yii\db\ActiveRecord
         
         $taskModel = new self();
         $taskModel->setAttributes($taskData);
+        $taskModel['creater_id'] = \Yii::$app->session['user_info']['id'];
         if(!$taskModel->save()) {
             return $this->modelFail(current($taskModel->getFirstErrors()));
         }
