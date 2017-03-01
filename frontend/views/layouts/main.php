@@ -28,7 +28,7 @@ use frontend\assets\AppAsset;
 
     <script type="text/javascript" src="/js/lib/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="/js/modal.js"></script>
-     <script type="text/javascript" src="/js/mCustomScrollbar.js"></script>
+<!--  	<script type="text/javascript" src="/js/mCustomScrollbar.js"></script> -->
     <script type="text/javascript" src="/js/common.js"></script>
 </head>
 <body>

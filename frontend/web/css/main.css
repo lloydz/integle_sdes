@@ -5,3 +5,19 @@
 	width: 1140px;
 	background: #fff;
 }
+
+.show-alert {
+	position: fixed;
+	z-index: 99999792;
+	padding: 30px 100px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	font-size: 15px;
+	border: 2px solid transparent;
+    border-radius: 4px;
+	color: #a94442;
+    background-color: #f2dede;
+    border-color: #ea0c13;	
+	white-space: nowrap;
+}

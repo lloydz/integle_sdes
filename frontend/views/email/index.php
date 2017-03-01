@@ -70,8 +70,8 @@
 				<td id="body-title-td" class="disabled">正文</td>
 				<td id="body-content-td" class="disabled">
 					<div style="height: 339px; line-height: 339px;">
-						<input type="hidden" name="123" class="ewebeditor_hide_ipt" value="" />
-        				<iframe class="editor_iframe" ID="iframe_editor_123" src="http://incms.integle.com/editor/ewebeditor.htm?id=123&style=coolblue" frameborder="0" scrolling="no" width="100%" height="300"></iframe>
+						<input type="hidden" name="body" class="ewebeditor_hide_ipt"/>
+        				<iframe class="editor_iframe" ID="iframe_editor_body" src="/editor/ewebeditor.htm?id=body&style=coolblue" frameborder="0" scrolling="no" width="100%" height="300"></iframe>
 					</div>
 				</td>
 			</tr>

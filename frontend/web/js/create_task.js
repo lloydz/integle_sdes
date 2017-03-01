@@ -22,6 +22,44 @@ $(document).ready(function() {
 		}
 		$('#to-list').html(radioHtml);
 	}
+	
+	// 验证
+	function validateForm() {
+		if($.trim($('#task-name').val()) == "") {
+			$.showAlert('请输入任务名称');
+			return false;
+		}
+		if($.trim($('#smtp').val()) == "") {
+			$.showAlert('请输入SMTP服务器');
+			return false;
+		}
+		if($.trim($('#port').val()) == "") {
+			$.showAlert('请输入端口');
+			return false;
+		}
+		if($.trim($('#username').val()) == "") {
+			$.showAlert('请输入发件邮箱	');
+			return false;
+		}
+		if($.trim($('#password').val()) == "") {
+			$.showAlert('请输入邮箱密码');
+			return false;
+		}
+		if(!$('#excel-upload').attr('task_dir')) {
+			$.showAlert('请上传Excel文件');
+			return false;
+		}
+		if($('input:radio[name="to"]:checked').length == 0) {
+			$.showAlert('请选择收件人对应所上传Excel文件中的栏位');
+			return false;
+		}
+		if($('#attachment-checkbox').is(':checked') && $('input:radio[name="attachment_excel_col"]:checked').length == 0) {
+			$.showAlert('请选择附件名称对应所上传Excel文件中的栏位');
+			return false;
+		}
+		
+		return true;
+	}
 
 	// Excel文件上传
 	$('#excel-upload').fileupload({
@@ -92,6 +130,10 @@ $(document).ready(function() {
     });
 	
 	$('#new-task').click(function() {
+		if(!validateForm()) {
+			return false;
+		}
+		
 		$.ajax({
 			 url : '/email/new-task',
 			type : 'post',
@@ -111,7 +153,7 @@ $(document).ready(function() {
 				template_data : {
 					to: $('input:radio[name="to"]:checked').val(),
                     subject: $('#subject').val(),
-					body: '<p>邮件正文<p><p>邮件正文<p><p>邮件正文<p><p>邮件正文<p><p>邮件正文<p>',
+					body: $('.editor_iframe')[0].contentWindow.getHTML(),
 					attachment: $('#attachment-checkbox').is(':checked') ? 1 : 0,
 					attachment_excel_col: $('input:radio[name="attachment_excel_col"]:checked').val()
 				}
