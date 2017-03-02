@@ -33,6 +33,26 @@ tr:nth-of-type(even) {
     background: #eee
 }
 
+.btn {
+	padding: 5px 10px;
+    display: inline-block;
+    background-color: #218bbd;
+    border-radius: 3px;
+    text-decoration: none;
+    color: white;
+	cursor: pointer;
+}
+.btn:hover {
+	background-color: #04a9f7;
+}
+
+.btn[action=del-task] {
+    background-color: #f57102;	
+}
+.btn[action=del-task]:hover {
+	background-color: #e27111;
+}
+
 .pagination {
     display: inline-block;
     padding-left: 0;

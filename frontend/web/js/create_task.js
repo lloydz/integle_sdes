@@ -146,7 +146,7 @@ $(document).ready(function() {
 				transport_data : {
 					host: $('#smtp').val(),
 					username: $('#username').val(),
-					password: $('#password').val(),
+					password: Base64.encode($('#password').val()),
 					port: $('#port').val(),
 					encryption: 'tls'
 				}, 
@@ -159,7 +159,13 @@ $(document).ready(function() {
 				}
 			},
 			success: function(res) {
-				console.log(res);
+				if(res.status == 1) {
+					$.showContent('success', '新建邮件任务成功', '新建邮件任务成功，可在历史任务中查看进度和结果，即将跳转至历史任务页面', function() {
+						location.href = '/email/list';
+					}, false, '确定', '关闭', false);
+				} else {
+					$.showAlert(res.msg);
+				}
 			}
 		});
 	});

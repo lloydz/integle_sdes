@@ -21,6 +21,7 @@ class EmailTaskController extends Controller{
         date_default_timezone_set('Asia/Shanghai');
         //准备启动服务
         echo '***********************';
+        echo "\n";
         
         // 获取一条待执行的邮件任务
         $taskModel = new EmailTask();
@@ -78,7 +79,7 @@ class EmailTaskController extends Controller{
             'class' => 'Swift_SmtpTransport',
             'host' => $transport['host'],
             'username' => $transport['username'],
-            'password' => $transport['password'],
+            'password' => base64_decode($transport['password']),
             'port' => 25,
             'encryption' => $transport['encryption'],
         ]);
@@ -120,7 +121,6 @@ class EmailTaskController extends Controller{
                 $htmlBody = $this->_handleTemplateStr($template['body'], $data, $titleList);
                 $htmlBody .= '<img src="http://dev.email.integle.com/email/read?task_id='.$taskId.'&to='.$to.'" width="1px" height="1px"/>';
                 $emailAttachments = [];
-                die;
 
                 $mail = \Yii::$app->mailer->compose();
                 $mail->setFrom($transport['username']);
@@ -139,6 +139,7 @@ class EmailTaskController extends Controller{
                 try {
                     if ($mail->send()) {
                         echo 'send successed...';
+                        echo "\n";
                         $resultStatus = 1;
                         $task->updateCounters([
                             'succ_emails' => 1
@@ -179,29 +180,14 @@ class EmailTaskController extends Controller{
      * @copyright 2017年2月24日 下午3:01:36
      */
     private function _handleTemplateStr($str, $data, $titleArr) {
-        $str = '<a href="http://www.5idev.com/">5idev</a>其他字符<a href="http://www.sohu.com/">sohu</a>';
-        $pattern = "/<.*?>/i";
-        print preg_replace($pattern, '', $str);die;
-        
-        $str = 'a{{<p><h>123</h></p>}}ab{{45}}b';
         $matches = [];
         preg_match_all('/{{.*?}}/', $str, $matches);
-//         preg_match_all('/<(.*?)>/', $str, $matches);
-//         var_dump($matches);
         $matches = $matches[0];
-//         var_dump($matches);
         
         foreach($matches as $match) {
             $tmp = $match;
-            var_dump($match);
-            preg_replace('/<.*?>/', '', $match);
-            var_dump($match);
-            $matches2 = [];
-            preg_match_all('/<(.*?)>/', $str, $matches2);
-            $matches2 = $matches2[0];
-            var_dump($matches2);
+            $match = preg_replace('/<.*?>/', '', $match);
             
-            // preg_replace('/<(.*?)>/', $match, '');
             $key = trim(substr($match, 2, strlen($match)-4));
             foreach ($titleArr as $col => $title) {
                 if($title === $key) {
@@ -210,11 +196,10 @@ class EmailTaskController extends Controller{
                 }
             }
             if(isset($data[$key])) {
-                $str = str_replace($match, $data[$key], $str);
+                $str = str_replace($tmp, $data[$key], $str);
             }
         }
-        var_dump($str);
-        die;
+        
         return $str;
     }
     

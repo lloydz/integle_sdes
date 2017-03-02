@@ -53,6 +53,7 @@
 	position: relative;
 	width: auto;
 	margin: 10px;
+	margin-top: 288px;
 	background: #fff;
 }
 .modal-content {
@@ -81,6 +82,7 @@
 	opacity: 0;
 }
 .modal-backdrop.in {
+	pointer-events: none;
 	filter: alpha(opacity = 50);
 	opacity: .5;
 }
@@ -146,13 +148,13 @@
 	top: 16px;
 }
 i.success {
-	background: url("../../image/image.png") -355px -25px;
+	background: url("../../images/image.png") -355px -25px;
 }
 i.error {
-	background: url("../../image/image.png") -303px -25px;
+	background: url("../../images/image.png") -303px -25px;
 }
 i.warning {
-	background: url("../../image/image.png") -329px -25px;
+	background: url("../../images/image.png") -329px -25px;
 }
 .modal_alert_box {
 	padding: 20px 30px 20px 75px;
@@ -225,7 +227,7 @@ button.close {
 	.modal-dialog {
 		width: 620px;
 		margin: 0px auto;
-		margin-top: 30px;
+		margin-top: 288px;
 	}
 	.modal-content {
 		-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
@@ -245,7 +247,7 @@ button.close {
 	.modal-dialog {
 		width: 720px;
 		margin: 0px auto;
-		margin-top: 30px;
+		margin-top: 288px;
 	}
 	.modal-sm {
 		width: 500px;

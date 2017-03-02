@@ -56,6 +56,9 @@ use frontend\assets\AppAsset;
 	<div class="nav">
 		<a class="tab<?= Yii::$app->controller->action->id == 'index' ? ' active' : ''?>" href="/email">新建任务</a>
 		<a class="tab<?= Yii::$app->controller->action->id == 'list' ? ' active' : ''?>" href="/email/list">历史任务</a>
+		<?php if(Yii::$app->controller->action->id == 'detail'):?>
+			<a class="tab active" href="javasrcipt:;">任务详情</a>
+		<?php endif;?>
 	</div>
 	
 	<div class="container">
@@ -64,5 +67,20 @@ use frontend\assets\AppAsset;
 	
 	<footer>Copyright©2009-2017 上海鹰谷信息科技有限公司 版权所有 沪ICP备13029136号</footer>
     <?php $this->endBody() ?>
+    
+    <div class="modal fade pop_modal">
+	<div class="modal-dialog" style="margin-top: 288px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title alert_title">提示</h4>
+			</div>
+			<div class="modal-body"></div>
+			<div class="modal-footer">
+				<button type="button" class="cancel btn btn-default" data-dismiss="modal">取消</button>
+				<button type="button" class="submit btn btn-primary pop_modal_submit">确定</button>
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 </html>

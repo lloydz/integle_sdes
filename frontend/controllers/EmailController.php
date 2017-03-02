@@ -86,11 +86,43 @@ class EmailController extends Controller
         $userTasks = EmailTask::find()->andWhere([
             'creater_id' => \Yii::$app->session['user_info']['id']
         ]);
+        $userTasks->andWhere(['<>', 'task_status', 0]);
         $pages = new Pagination(['totalCount' =>$userTasks->count(), 'pageSize' => '10']);
         $pageTasks = $userTasks->offset($pages->offset)->limit($pages->limit)->orderBy('id DESC')->asArray()->all();
 
         return $this->render('list',[
             'tasks' => $pageTasks,
+            'pages' => $pages,
+        ]);
+    }
+    
+    public function actionDetail() {
+        $taskId = \Yii::$app->request->get('task_id');
+        $status = \Yii::$app->request->get('status', 0);
+        
+        $task = EmailTask::findOne($taskId);
+        
+        $results = TaskResult::find()->andWhere([
+            'task_id' => $taskId
+        ]);
+        
+        if($status == 1 || $status == 2) {
+            $results->andWhere([
+                'status' => $status
+            ]);
+        } else if($status == '1_1') {
+            $results->andWhere([
+                'status' => $status,
+                'is_read' => 1
+            ]);
+        }
+        
+        $pages = new Pagination(['totalCount' =>$results->count(), 'pageSize' => '20']);
+        $pageResults = $results->offset($pages->offset)->limit($pages->limit)->asArray()->all();
+        
+        return $this->render('detail',[
+            'task' => $task,
+            'results' => $pageResults,
             'pages' => $pages,
         ]);
     }
@@ -183,6 +215,26 @@ class EmailController extends Controller
         $result = (new EmailTask())->newTask($taskData, $transportData, $templateData);
         
         return $this->ajaxReturn($result['status'], $result['msg'], $result['data']);
+    }
+    
+    public function actionDelTask() {
+        $taskId = \Yii::$app->request->post('task_id');
+        $task = EmailTask::findOne($taskId);
+        
+        if(!$task || $task['task_status'] == 0) {
+            return $this->ajaxFail('任务不存在');
+        }
+        
+        if($task['task_status'] != 1) {
+            return $this->ajaxFail('任务已开始，不能删除');
+        }
+        
+        $task['task_status'] = 0;
+        if($task->save()) {
+            return $this->ajaxSuccess('删除成功', null);
+        }
+    
+        return $this->ajaxFail(current($task->getFirstErrors()));
     }
 
     public function actionRead() {

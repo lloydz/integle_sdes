@@ -65,7 +65,7 @@ $.extend({
     /**
      *@type string:  success error warning
      * */
-    showContent: function(type, title, con, okfn, className, okvalue, closevalue){
+    showContent: function(type, title, con, okfn, className, okvalue, closevalue, showCloseBtn){
         $('.follow_tip').remove();
         $('.alert_title').html(title);
         var modalDialog = $('.pop_modal .modal-dialog');
@@ -77,7 +77,8 @@ $.extend({
         }
         $('.pop_modal .modal-body').html(html);
         
-        
+        okvalue = okvalue || '确定';
+        closevalue = closevalue || '关闭';
         $('.pop_modal').modal('show', null, okvalue, closevalue); 
         
         okfn ? $('body').off('click.pop_modal_submit').on('click.pop_modal_submit', '.pop_modal_submit', function(){         
@@ -97,6 +98,11 @@ $.extend({
         }else{
             $('.pop_modal_submit').show();
         }
+        
+        if(showCloseBtn === false) {
+        	$('.cancel').hide();
+        }
+        
         if(className){
             modalDialog.addClass(className);
         }
@@ -113,10 +119,6 @@ $.extend({
             config.showAlertTimer ? clearTimeout(config.showAlertTimer) : '';
         };
         $('body').append('<div class="show-alert">'+str+'</div>');
-//        $('.show-alert').css({
-//            'marginLeft' : $('.show-alert').outerWidth() / 2 * -1,
-//            'width': $('.show-alert').outerWidth()
-//        });
         
         config.showAlertTimer = setTimeout(function(){
             $('.show-alert').remove();

@@ -147,6 +147,10 @@ class EmailTask extends \yii\db\ActiveRecord
         return null;
     }
     
+    public function getTaskResult($param) {
+        ;
+    }
+    
     public function modelReturn($status, $msg, $data) {
         return [
             'status' => $status,

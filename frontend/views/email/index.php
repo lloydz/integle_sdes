@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/css/task-form.css"/>
 <script type="text/javascript" src="/js/lib/jquery-file-upload/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="/js/lib/jquery-file-upload/jquery.fileupload.js"></script>
+<script type="text/javascript" src="/js/lib/base64-min.js"></script>
 <script type="text/javascript" src="/js/create_task.js"></script>
 <div class="task-form">
 	<div class="form-title">
@@ -14,15 +15,15 @@
 				<th colspan="4">发件服务器配置</th>
 			</tr>
 			<tr>
-				<td>SMTP 服务器</td>
+				<td><label>SMTP服务器</label></td>
 				<td><input id="smtp" type="text" value="smtp.163.com"/></td>
-				<td>端口</td>
+				<td><label>端口</label></td>
 				<td><input id="port" type="text" value="25"/></td>
 			</tr>
 			<tr>
-				<td>发件邮箱</td>
+				<td><label>发件邮箱</label></td>
 				<td><input id="username" type="text" value="zhhjchxy@163.com"/></td>
-				<td>密码</td>
+				<td><label>邮箱密码</label></td>
 				<td><input id="password" type="password" value="wy123456"/></td>
 			</tr>
 		</table>
@@ -34,7 +35,11 @@
 				<th colspan="2">邮件模板配置</th>
 			</tr>
 			<tr>
-				<td>Excel文件上传</td>
+				<td>
+					<label>Excel文件上传</label>
+					<span class="tip-icon" data-tip="提示：此Excel文件应包含收件人邮箱列，以及待发送邮件中的个性化信息列，如单位名称、课题名称、课题编号等"></span>
+<!-- 					<div class="tip">(提示：此Excel文件应包含收件人邮箱列，以及待发送邮件中的个性化信息列，如单位名称、课题名称、课题编号等)</div> -->
+				</td>
 				<td style="text-align:left;">
 					<div class="file-upload-container">
     					<span class="file-upload-button">
@@ -52,22 +57,32 @@
 				</td>
 			</tr>
 			<tr id="to-tr" class="disabled">
-				<td style="width:250px;">收件人</td>
+				<td style="width:250px;">
+					<label>收件人</label>
+<!-- 					<span class="tip-icon" data-tip="提示：此处请选择所上传Excel文件中的对应收件人的列"></span> -->
+				</td>
 				<td>
     				<fieldset>
                 		<legend>
-                			请选择收件人对应所上传Excel文件中的栏位
+                			请选择所上传Excel文件中的对应收件人的列
                 		</legend>
                 		<div id="to-list" class="radio-list"></div>
                 	</fieldset>
 				</td>
 			</tr>
 			<tr id="subject-tr" class="disabled">
-				<td style="width:250px;">主题</td>
+				<td style="width:250px;">
+					<label>邮件主题</label>
+					<span class="tip-icon" data-tip="提示：如果主题中想包含个性化信息，如：课题名称,请这样输入{{课题名称}}"></span>
+				</td>
 				<td><input id="subject" type="text" value="主题主题主题" style="width:100%;text-align:left;"/></td>
 			</tr>
 			<tr id="body-tr">
-				<td id="body-title-td" class="disabled">正文</td>
+				<td id="body-title-td" class="disabled">
+					<label>邮件正文</label>
+					<span class="tip-icon" data-width="300px" data-tip="提示：如果正文中想包含个性化信息，如：课题名称,请这样输入{{课题名称}}；
+					如果需要对个性化信息进行样式选择，如：加粗、调整字体大小颜色,请对个性化信息整体（包含左右的双大括号）选中后进行样式操作；双大括号和其中的个性化信息请手动输入，尽量不要复制粘贴，否则可能会影响显示样式"></span>
+				</td>
 				<td id="body-content-td" class="disabled">
 					<div style="height: 339px; line-height: 339px;">
 						<input type="hidden" name="body" class="ewebeditor_hide_ipt"/>
@@ -76,19 +91,22 @@
 				</td>
 			</tr>
 			<tr id="has-attachment-tr" class="disabled">
-				<td>附件</td>
+				<td>
+					<label>是否发送附件</label>
+					<span class="tip-icon" data-tip="提示：如果发送附件，附件名称应对应所上传Excel文件中的某一列"></span>
+				</td>
 				<td style="text-align:left;">
 					<input id="attachment-checkbox" type="checkbox"/>
 					<div id="attachment-setting" style="display: none;">
 						<fieldset id="attachment-fieldset" style="display: block;">
 							<legend>
-								请选择附件名称对应所上传Excel文件中的栏位
+								请选择所上传Excel文件中的对应附件名称的列
 							</legend>
 							<div id="attachment-excel-col" class="radio-list"></div>
 						</fieldset>
 						<div class="file-upload-container">
     					<span class="file-upload-button">
-                            <span>+选择文件</span>
+                            <span>+上传附件</span>
                             <input id="attachment-upload" type="file" name="attachments[]" multiple/>
                         </span>
 							<div id="attachment-upload-progress" class="progress">

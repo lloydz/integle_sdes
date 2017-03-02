@@ -28,7 +28,12 @@ th {
 }
 th {
     background: url(/images/hd.jpg) repeat-x;
-	height: 45px;	
+	height: 45px;
+	font-size: 16px;
+}
+
+td>label {
+	font-size: 14px;	
 }
 
 input[type=text], input[type=password] {
@@ -60,7 +65,58 @@ input[type=text]:focus, input[type=password]:focus {
 }
 
 .task-form > input {
-	
+}
+
+.tip-icon {
+	position: relative;
+    display: inline-flex;
+    background: url(/images/tip-icon.png);
+    width: 20px;
+    height: 20px;
+    vertical-align: -5px;
+}
+
+.tip-icon:hover {
+	cursor: pointer;	
+}
+
+.tip-icon:hover:before {
+	content: attr(data-tip);
+	padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+	color: #31708f;
+    background-color: #d9edf7;
+	position: absolute;
+	left: 30px;
+    top: -20px;
+	width: attr(data-width);
+    min-width: 250px;
+    z-index: 99;
+	text-align: left;
+}
+
+.tip-icon:hover:after {
+	content: '';
+	width: 0;
+	height: 0;
+    border: 10px solid #d9edf7;
+	border-left: 10px solid transparent;
+	border-top: 10px solid transparent;	
+	border-bottom: 10px solid transparent;	
+	position: absolute;
+	left: 10px;
+    top: -2px;
+    z-index: 99;
+}
+
+.tip {
+	padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+	color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
 }
 
 .file-upload-container {
@@ -193,6 +249,11 @@ fieldset {
     margin: 10px 0;
 }
 
+legend {
+	color: #31708f;
+	font-size: 14px;
+}
+
 .radio-list .radio {
 	float: left;
 	margin-left: 30px;
@@ -236,6 +297,37 @@ fieldset {
 
 #new-task:hover {
     background-color: #0060b5;
+}
+
+.btn {
+	display: inline-block;
+	padding: 5px 12px;
+	margin-bottom: 0;
+	font-weight: 400;
+	line-height: 1.4;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	-webkit-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	min-width: 64px;
+	cursor: pointer;	
+}
+
+.btn-default {
+	color: #333;
+	background-color: #f8f8f8;
+	border-color: #ccc;
+	padding: 4px 12px;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #4183bd;
+	padding: 4px 12px;
 }
 
 /**
