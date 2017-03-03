@@ -58,7 +58,7 @@ class EmailTaskController extends Controller{
         $this->_sendEmails($taskId, $excelData);
 
         $taskModel->UpdateTaskById($taskId, [
-            'task_status' => 1
+            'task_status' => 3
         ]);
     }
     
@@ -93,7 +93,7 @@ class EmailTaskController extends Controller{
         }
 
         $attachments = [];
-        if($template['attachment']) {
+        if($template['attachment'] != 0) {
             $attachmentDir = \Yii::$app->params['file_upload_path'] . $task['file_path'] . '\attachments\\';
             foreach(scandir($attachmentDir) as $file) {
                 if($file == '.' || $file == '..') {
@@ -128,10 +128,19 @@ class EmailTaskController extends Controller{
                 $mail->setSubject($subject);
                 $mail->setHtmlBody($htmlBody);
                 foreach($attachments as $attachment) {
-                    $excelColContent = iconv('UTF-8', 'gbk', $data[$template['attachment_excel_col'] - 1]);
-                    if(strpos($attachment, $excelColContent) === 0) {
+                    $addAttachment = false;
+                    
+                    if($template['attachment'] == 1) {
+                        $addAttachment = true;
+                    } else {
+                        $excelColContent = iconv('UTF-8', 'gbk', $data[$template['attachment_excel_col'] - 1]);
+                        if(strpos($attachment, $excelColContent) === 0) {
+                            $addAttachment = true;
+                        }
+                    }
+                    
+                    if($addAttachment) {
                         array_push($emailAttachments, iconv('gbk', 'UTF-8', $attachment));
-                        // $mail->attach($attachmentDir . $attachment, ['fileName' => iconv('gbk', 'UTF-8', $attachment)]);
                         $mail->attach($attachmentDir . $attachment, ['fileName' => iconv('gbk', 'UTF-8', $attachment)]);
                     }
                 }
@@ -154,6 +163,10 @@ class EmailTaskController extends Controller{
                 } catch(\Exception $e) {
                     $resultMsg = $e->getMessage();
                     $resultStatus = 2;
+                    echo 'send failed...';
+                    $task->updateCounters([
+                        'fail_emails' => 1
+                    ]);
                 }
 
                 $taskResultModel = new TaskResult();

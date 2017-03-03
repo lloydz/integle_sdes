@@ -53,7 +53,11 @@ $(document).ready(function() {
 			$.showAlert('请选择收件人对应所上传Excel文件中的栏位');
 			return false;
 		}
-		if($('#attachment-checkbox').is(':checked') && $('input:radio[name="attachment_excel_col"]:checked').length == 0) {
+		if($('input:radio[name="attachment_type"]:checked').length == 0) {
+			$.showAlert('请选择附件类型');
+			return false;
+		}
+		if($('input:radio[name="attachment_type"]:checked').val() == 2 && $('input:radio[name="attachment_excel_col"]:checked').length == 0) {
 			$.showAlert('请选择附件名称对应所上传Excel文件中的栏位');
 			return false;
 		}
@@ -121,12 +125,16 @@ $(document).ready(function() {
         }
     });
 
-    $('#attachment-checkbox').click(function() {
-        if($(this).is(':checked')) {
-            $('#attachment-setting').show();
-        } else {
-            $('#attachment-setting').hide();
-        }
+    $('[name=attachment_type]').click(function() {
+    	if($(this).val() == 1) {
+    		$('#attachment-fieldset').hide();
+    		$('#attachment-setting').show();
+    	} else if($(this).val() == 2) {
+    		$('#attachment-fieldset').show();
+    		$('#attachment-setting').show();
+    	} else {
+    		$('#attachment-setting').hide();
+    	}
     });
 	
 	$('#new-task').click(function() {
@@ -154,7 +162,7 @@ $(document).ready(function() {
 					to: $('input:radio[name="to"]:checked').val(),
                     subject: $('#subject').val(),
 					body: $('.editor_iframe')[0].contentWindow.getHTML(),
-					attachment: $('#attachment-checkbox').is(':checked') ? 1 : 0,
+					attachment: $('input:radio[name="attachment_type"]:checked').val(),
 					attachment_excel_col: $('input:radio[name="attachment_excel_col"]:checked').val()
 				}
 			},

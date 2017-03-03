@@ -25,7 +25,7 @@ class EmailController extends Controller
         $this->getUserInfo();
         
         if(empty($this->userInfo)) {
-            $this->redirect('http://dev.center.integle.com/user/login?referer=http://dev.email.integle.com/email');
+            $this->redirect(CENTER_URL . '/user/login?referer=' . SELF_URL . '/email');
             Yii::$app->end();
         }
         
@@ -35,10 +35,10 @@ class EmailController extends Controller
     }
     
     public function getUserInfo() {
-        $ticket = isset($_COOKIE['dev_ygu']) ? $_COOKIE['dev_ygu'] : NULL;
+        $ticket = isset($_COOKIE[LOGIN_COOKIE_NAME]) ? $_COOKIE[LOGIN_COOKIE_NAME] : NULL;
         if ($ticket) {
             // 获取用户信息
-            $url = 'http://dev.center.integle.com/api/user-info';
+            $url = CENTER_URL . '/api/user-info';
             $result = (new Curl())->sendPostCurl($url, [
                 'ticket' => $ticket
             ]);

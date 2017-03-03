@@ -93,12 +93,17 @@
 			<tr id="has-attachment-tr" class="disabled">
 				<td>
 					<label>是否发送附件</label>
-					<span class="tip-icon" data-tip="提示：如果发送附件，附件名称应对应所上传Excel文件中的某一列"></span>
+<!-- 					<span class="tip-icon" data-tip="提示：如果发送附件，附件名称应对应所上传Excel文件中的某一列"></span> -->
 				</td>
 				<td style="text-align:left;">
-					<input id="attachment-checkbox" type="checkbox"/>
+					<div class="radio-list" style="margin-bottom: 15px; margin-top: 15px;">
+						<input type="radio" name="attachment_type" value="0"/>不发送附件
+						<input type="radio" name="attachment_type" value="1" style="margin-left:50px;"/>给所有的收件人发送的附件相同
+						<input type="radio" name="attachment_type" value="2" style="margin-left:50px;"/>给不同的收件人发送的附件不同
+						<span class="tip-icon" data-tip="提示：如果给不同的收件人发送的附件不同，附件名称应对应所上传Excel文件中的某一列"></span>
+					</div>
 					<div id="attachment-setting" style="display: none;">
-						<fieldset id="attachment-fieldset" style="display: block;">
+						<fieldset id="attachment-fieldset" style="display: none;">
 							<legend>
 								请选择所上传Excel文件中的对应附件名称的列
 							</legend>

@@ -1,18 +1,26 @@
 <?php
 
 $sLicense = "2:36705:4:1:1::ineln.integle.com:e1d0123c52c424d8f3bbb25afae26580";
-//dev
+
+$sLicenseDev = '2:43248:4:1:1::dev.ets.integle.com:b3af4a4bc5f880e77b1e67822aaaeda9';
+$sLicensePre = '2:43249:4:1:1::ets.ineln.com:7f10c915e2e5dc46254e00e6cc86e073';
+$sLicenseOnline = '2:43250:4:1:1::ets.integle.com:70456ecd1b9ba20ba591a8c54995edba';
+// dev
+// 2:43248:4:1:1::dev.ets.integle.com:b3af4a4bc5f880e77b1e67822aaaeda9
+// 2:43249:4:1:1::ets.ineln.com:7f10c915e2e5dc46254e00e6cc86e073
+// 2:43250:4:1:1::ets.integle.com:70456ecd1b9ba20ba591a8c54995edba
+
+
 //2:36953:4:1:1::www.ineln.com:1ce3353492fa3fb576b7b14789518c15 www.ineln.com
 //2:36705:4:1:1::ineln.integle.com:e1d0123c52c424d8f3bbb25afae26580 ineln.integle.com
 //2:36046:4:1:1::eln.integle.com:616389c6e9e4b1c7ac6e678d59a5370c eln.integle.com
 
 define('DS', DIRECTORY_SEPARATOR);
- if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') { // windows系统(开发用)
+if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') { // windows系统(开发用)
     define('UPLOAD_PATH', "\\\\192.168.100.18" . DS . 'uploads' . DS . 'graphics' . DS . 'srcpath' . DS);
 } else {
     define('UPLOAD_PATH', '/home' . DS . 'uploads' . DS . 'graphics' . DS . 'srcpath' . DS);
 }
-
 
 if (php_sapi_name() === 'cli' or defined('STDIN')) {
     $hostArray[0] = 'dev';
@@ -34,6 +42,7 @@ if ('dev' == $hostArray[0]) {
     define('ENVIRONMENT', $hostArray[0]);
     $environment = ENVIRONMENT . '.';
     $sLicense = "2:39143:4:1:1::dev.incms2.integle.com:a9f2cce2076a1d2761d11504bda4e73f";
+    $sLicense = $sLicenseDev;
 } else {
     define('ENVIRONMENT', 'www');
     $environment = '';
@@ -43,9 +52,10 @@ if ('dev' == $hostArray[0]) {
     if('ineln' == $hostArray[1]){
         $picUrl = 'http://pic.ineln.com/';
         $sLicense = "2:39481:4:1:1::incms.ineln.com:3d148768642003aa21d7af88b8cef22c";
+        $sLicense = $sLicensePre;
     }elseif('integle' == $hostArray[1]){
         $sLicense = "2:39834:4:1:1::incms.integle.com:04874d8a0b1a8ba719a32fcf6a7ce70a";
-//         $sLicense = "2:39833:4:1:1::newincms.integle.com:e981442db20fcc3aa281bea8f1a09962";
+        $sLicense = $sLicenseOnline;
     }
     
 }
